@@ -1,7 +1,179 @@
+@font-face { font-family: 'WOFF Juli Sans-Light'; src: url('../fonts/JuliSans-Light.woff'); }
+@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.woff'); }
+@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.woff'); }
+@font-face { font-family: 'WOFF Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.woff'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Light'; src: url('../fonts/JuliSans-Light.woff2'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.woff2'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.woff2'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.woff2'); }
+@font-face { font-family: 'EOT Juli Sans-Light'; src: url('../fonts/JuliSans-Light.eot'); }
+@font-face { font-family: 'EOT Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.eot'); }
+@font-face { font-family: 'EOT Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.eot'); }
+@font-face { font-family: 'EOT Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.eot'); }
+
 .calculator_table{
-	font-size:11px;
-	font-family:verdana, arial, sans-serif;
-	border:2pt solid #4444FF;
-	padding:25px;
-	width:300px;	
+	font-size:12px;
+	font-family: "WOFF2 Juli Sans-Regular"; 
+	font-feature-settings: "kern" on, "liga" on, "calt" on;
+	-moz-font-feature-settings: "kern" on, "liga" on, "calt" on;
+	-webkit-font-feature-settings: "kern" on, "liga" on, "calt" on;
+	-ms-font-feature-settings: "kern" on, "liga" on, "calt" on;
+	-o-font-feature-settings: "kern" on, "liga" on, "calt" on;
+	padding: 0 25px 25px;
 }
+
+#ovulationCalculatorForm{
+	background-color: #f5f5f5;
+	padding: 25px;
+	margin-bottom: 50px;
+}
+
+#calendar{
+	display: none;
+}
+
+.ui-datepicker{
+	width: 100%;
+}
+
+.oc_heading{
+	padding: 0 25px 0;
+}
+
+.oc_title,
+.oc_subtitle{
+	color: #9E8977;
+}
+
+.oc_title{
+	font-family: "WOFF Juli Sans-Bold"; 
+	font-size: 40px;
+	margin: 0 0 10px;
+}
+.oc_subtitle{
+	font-family: "WOFF2 Juli Sans-Medium"; 
+	font-size: 20px;
+}
+
+.calculator_table form,
+.calculator_table .email-box{
+	position: relative;
+}
+
+.calculator_table i.fa.fa-calendar{
+	position: absolute;
+	right: 35px;
+	margin-top: 10px;
+	color: #c1c1c1;
+}
+
+.calculator_table i.fa.fa-angle-right{
+	position: absolute;
+	right: 35px;
+	margin-top: 15px;
+	color: #fff;
+}
+
+
+.calculator_table h2,
+.calculator_table p{
+	font-family: "WOFF2 Juli Sans-Medium"; 
+	color: #9E8977;
+}
+
+.calculator_table p{
+	font-family: "WOFF2 Juli Sans-Regular";
+	font-size: 20px;
+}
+.calculator_table input[type="email"],
+.calculator_table select,
+.calculator_table input[type="text"]{
+	font-family: "WOFF2 Juli Sans-Regular"; 
+	color: #9b9893;
+	border-radius: 5px;
+	margin-bottom: 1em;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.calculator_table input[type="email"],
+.calculator_table input[type="text"]{
+	background: #fff;
+	border: 1px solid #ccc;
+	display: block;
+	padding: 0.7em;
+	width: 100%;
+	font-size: 1rem;
+	line-height: 1.5;
+}
+.calculator_table select{
+	border: 1px solid #ccc;
+	height: 3em;
+	max-width: 100%;
+	width: 100%;
+}
+.calculator_table input[type="email"]:active,
+.calculator_table input[type="email"]:focus,
+.calculator_table input[type="text"]:active,
+.calculator_table input[type="text"]:focus{
+	color: #999;
+	border-color: #ccc;
+}
+.calculateagain,
+.calculator_table .submit-btn{
+	padding: 1rem 0;
+	text-align: center;
+}
+
+.calculateagain input[type=button],
+.calculator_table .submit-btn input[type=submit]{
+	width: 100%;
+	border-radius: 5px;
+	background-color: #a8d1af;
+	color: #fff;
+	font-family: "WOFF2 Juli Sans-Regular"; 
+	font-size: 20px;
+	padding: 0.8em 2em;
+	border: 0;
+	box-shadow: none;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 1;
+	text-shadow: none;
+}
+
+.calculateagain input[type=button]:hover,
+.calculator_table .submit-btn input[type=submit]:hover{
+	background-color: #9b9893;	
+}
+
+.calculator_table form p{
+	margin-bottom: 0.5em;
+}
+
+.email-area{
+	background-color: #e6e6e6;
+	padding: 25px;
+}
+
+.message-eng h2{
+	font-family: "WOFF2 Juli Sans-Regular"; 
+	margin: 0 0 1em;
+	padding: 0;
+}
+.message-eng p{
+	color: #000;
+}
+
+.subscription-option {
+    display: flex;
+}
+.calculateagain{
+	
+}
+
+/* clearfix short For modern browsers */
+.cf:before,
+.cf:after { content:""; display:table; }
+.cf:after { clear:both; }
+/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom:1; }

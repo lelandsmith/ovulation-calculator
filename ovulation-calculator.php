@@ -59,12 +59,18 @@ if (!class_exists("OvulationCalculator")){
 	    function ovulation_calculator_enqueue(){ 
 		    wp_enqueue_style( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );  
 	        //wp_enqueue_style( 'oc_jquery_ui', plugins_url( '/css/jquery-ui.css' , __FILE__ ) );
+	        
+	        wp_enqueue_style( 'oc_custom_datepicker', plugins_url( '/css/melon.datepicker.css' , __FILE__ ) );
+	        
+	        wp_enqueue_style( 'oc-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0' );
+	        
 	        wp_enqueue_style( 'oc-main', plugins_url( '/css/ovulation-calculator.css' , __FILE__ ) );
 	        //wp_register_script( 'oc_jquery', 'https://code.jquery.com/jquery-1.12.4.js', false, false );
 	        //wp_register_script( 'oc_jquery_ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
-	        
 	        //wp_enqueue_script( 'oc_jquery' );
 	        wp_enqueue_script( 'jquery-ui-datepicker' );
+	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, false );
+		   	wp_enqueue_script( 'oc-front' );
 	    }
 	    
 	    
@@ -125,8 +131,10 @@ if (!class_exists("OvulationCalculator")){
 		function ovulation_calculator_shortcodes_init(){
 		    function ovulation_calculator_shortcode($atts = [], $content = null){
 		        // do something to $content
-				echo '<p>Ovulation Calculator</p>';
-				
+				echo '<div class="oc_heading">';
+					echo '<h1 class="oc_title">Ovulation Calculator</h1>';
+					echo '<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>';
+				echo '</div>';
 				include( plugin_dir_path( __FILE__ ) . 'include/oc_shortcode.php');
 				
 		        // always return

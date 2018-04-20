@@ -24,7 +24,7 @@
 
 #ovulationCalculatorForm{
 	background-color: #f5f5f5;
-	padding: 25px;
+	padding: 25px 25px 15px;
 	margin-bottom: 50px;
 }
 
@@ -49,10 +49,15 @@
 	font-family: "WOFF Juli Sans-Bold"; 
 	font-size: 40px;
 	margin: 0 0 10px;
+	padding: 1.5em 0 0;
+	line-height: 1.4
 }
 .oc_subtitle{
 	font-family: "WOFF2 Juli Sans-Medium"; 
 	font-size: 20px;
+	margin: 0 0 1.5em;
+	padding: 0;
+	line-height: 1.5
 }
 
 .calculator_table form,
@@ -84,7 +89,19 @@
 .calculator_table p{
 	font-family: "WOFF2 Juli Sans-Regular";
 	font-size: 20px;
+	margin: 0 0 1.5em;
+    padding: 0;
 }
+
+.calculator_table h2{
+	font-size: 1.625rem;
+	line-height: 1.4;
+    margin: 0 0 0.75em;
+    padding: 0;
+}
+
+
+
 .calculator_table input[type="email"],
 .calculator_table select,
 .calculator_table input[type="text"]{
@@ -105,6 +122,12 @@
 	font-size: 1rem;
 	line-height: 1.5;
 }
+
+.calculator_table input[type="email"]{
+	font-size: 1.2rem;
+	padding: 0.5em;
+}
+
 .calculator_table select{
 	border: 1px solid #ccc;
 	height: 3em;
@@ -124,7 +147,7 @@
 	text-align: center;
 }
 
-.calculateagain input[type=button],
+
 .calculator_table .submit-btn input[type=submit]{
 	width: 100%;
 	border-radius: 5px;
@@ -141,7 +164,7 @@
 	text-shadow: none;
 }
 
-.calculateagain input[type=button]:hover,
+
 .calculator_table .submit-btn input[type=submit]:hover{
 	background-color: #9b9893;	
 }
@@ -152,7 +175,7 @@
 
 .email-area{
 	background-color: #e6e6e6;
-	padding: 25px;
+	padding: 15px 25px 5px;
 }
 
 .message-eng h2{
@@ -161,14 +184,128 @@
 	padding: 0;
 }
 .message-eng p{
-	color: #000;
+	color: #544f49;
 }
 
-.subscription-option {
+.subscription-option{
     display: flex;
 }
+
+.subscription-option input[type="checkbox"]{
+	transition: all .3s linear;
+	margin-right: 0.5em;
+}
+
 .calculateagain{
-	
+	display: flex;
+}
+.fertile{
+	flex: 1;
+	text-align: left;
+}
+.fertile a{
+	font-family: "WOFF2 Juli Sans-Regular";
+	text-decoration: none;
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+	font-size: 16px;
+	color: #544f49;
+}
+
+.fertile a:visited{
+	color: #544f49;
+}
+
+.fertile a > img{
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	-webkit-box-shadow: none!important;
+	box-shadow: none!important;
+}
+
+.calculateagain i.fa.fa-calendar{
+	position: relative;
+	right: 0;
+	margin: 0;
+}
+
+.calculateagain input[type=button]{
+	font-family: "WOFF2 Juli Sans-Regular"; 
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+	color: #544f49;
+	padding: 0;
+	font-size: 16px;
+	box-shadow: none;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 2;
+	text-shadow: none;
+	vertical-align: bottom;
+}
+.calculateagain input[type=button]:active,
+.calculateagain input[type=button]:focus,
+.calculateagain input[type=button]:hover{
+	background-color: transparent;
+	outline: 0;
+}
+
+.calculateagainbtn{
+	position: relative;
+	right: 20px;
+}
+
+.subscription-option label,
+.email-box p,
+.email-message p{
+	color: #544f49;
+}
+
+.subscription-option label{
+	font-size: 14px;
+	line-height: 1;
+}
+
+.email-message h2,
+.email-message p{
+	margin-bottom: 0.5em;
+}
+
+.email-box p,
+.email-message p{
+	line-height: 1.2;
+}
+
+.calendar-area{
+	background-color: #f5f5f5;
+    margin-bottom: 1rem;
+    padding: 1.5rem 0.5rem 0;
+}
+
+.calendar-area h2,
+.calendar-area p{
+	margin-bottom: 10px;
+}
+
+.calendar-area p{
+	color: #544f49;
+}
+.ui-datepicker td a{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.ui-state-default, .ui-widget-content .ui-state-default{
+	border: 2px solid #fff;
+}
+
+td.fertileDay a.ui-state-default {
+    background-color: #a8d1af;
+    color: #fff;
+    background-image: url(images/tick.svg);
+    background-repeat: no-repeat;
+    background-position: right bottom;
 }
 
 /* clearfix short For modern browsers */

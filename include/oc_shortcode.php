@@ -34,12 +34,12 @@
 		$(document).ready(function() {	  
 			var fruits = <?php echo '["' . implode('", "', $result) . '"]' ?>;
 			$('#datepicker').datepicker({
-				 //dateFormat: "dd/mm/yy",
+				dayNamesMin: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
 				 beforeShowDay: function (date) {
 		            //convert the date to a string format same as the one used in the array
 		            var string = $.datepicker.formatDate('MM dd, yy', date)
 		            if ($.inArray(string, fruits) > -1) {
-		                return [true, '', ''];
+		                return [true, 'fertileDay', ''];
 		            } else {
 		                return [false, '', ''];
 		            }
@@ -78,21 +78,32 @@ if(!empty($_POST['calculator_ok'])):
 		
 	?>
 	<div class="calculator_table">
-		<h2>[Your ovulation dates]</h2>
-		<p>[Press the arrow to see next month's result.]</p>
 		
-		<?php check_available_date($firstday);?>
-		<div id="datepicker" class="ll-skin-melon"></div>
-	
-	<div class="calculateagain"><input type="button" value="Calculate again!" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'];?><?php echo $_SERVER['REQUEST_URI']?>'"></div>
-	
+		<div class="calendar-area">
+			<h2>[Your ovulation dates]</h2>
+			<p>[Press the arrow to see next month's result.]</p>
+			
+			<?php check_available_date($firstday);?>
+			<div id="datepicker" class="ll-skin-melon"></div>
+		
+			<div class="calculateagain">
+				<div class="fertile">
+				<a href="#"><img src="<?php echo plugins_url('/img/tick.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;[Fertile]</a>
+				</div>
+				<div class="calculateagainbtn">
+					<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="[Change date]" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'];?><?php echo $_SERVER['REQUEST_URI']?>'">
+				</div>
+			</div>
+		</div>
+		
+		
 		<div class="email-area">
 			<div class="email-message">
-				<h2>Send ovulation calendar by email</h2>
+				<h2>[Send ovulation calendar by email]</h2>
 				<p>Enter your email and we'll send you your ovulation dates for the next 6 months.</p>
 			</div>
 			<div class="email-box">
-				<input type="email" name="oc_email" value="Enter your email"/>
+				<input type="email" name="oc_email" value="[Enter your email]"/>
 				<p> [You will at the same time reveive a link to download our e-book Guide to Pregnancy and be subscribed to our newsletter about fertility. ]</p>
 				<div class="subscription-option">
 					<input type="checkbox" id="subscribeNews" name="oc_subscribe" value="newsletter">

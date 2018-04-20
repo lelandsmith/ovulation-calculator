@@ -30,6 +30,7 @@ if (!class_exists("OvulationCalculator")){
 			add_action('wp_enqueue_scripts', array($this,'ovulation_calculator_enqueue') );
 			
 			add_action('init', array($this, 'ovulation_calculator_shortcodes_init') );
+			
 		}
 		public static function activate()
         {
@@ -49,31 +50,27 @@ if (!class_exists("OvulationCalculator")){
         
         // Admin Style and JS
         function admin_ovulation_calculator_enqueue(){
-	       	 	wp_enqueue_script( 'jquery-ui-tabs' );
-		   	 	wp_register_script( 'oc-admin-tab', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, false );
-		   	 	wp_enqueue_script( 'oc-admin-tab' );
+	       	 wp_enqueue_style( 'oc_jquery_ui_admin', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
+	       	 //wp_register_script( 'oc_jquery_ui_admin', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
+	        //wp_enqueue_script( 'oc_jquery_ui_admin' );
+	       	 wp_enqueue_script('jquery-ui-tabs');
+		   	 wp_register_script('oc-admin-tab', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, false );
+		   	 wp_enqueue_script('oc-admin-tab');
 	     }   
 	     
 	     
 	    // Front-end Style and JS   
 	    function ovulation_calculator_enqueue(){ 
 		    wp_enqueue_style( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );  
-	        //wp_enqueue_style( 'oc_jquery_ui', plugins_url( '/css/jquery-ui.css' , __FILE__ ) );
-	        
 	        wp_enqueue_style( 'oc_custom_datepicker', plugins_url( '/css/melon.datepicker.css' , __FILE__ ) );
-	        
 	        wp_enqueue_style( 'oc-font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), '4.7.0' );
-	        
 	        wp_enqueue_style( 'oc-main', plugins_url( '/css/ovulation-calculator.css' , __FILE__ ) );
-	        //wp_register_script( 'oc_jquery', 'https://code.jquery.com/jquery-1.12.4.js', false, false );
-	        //wp_register_script( 'oc_jquery_ui', 'https://code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
-	        //wp_enqueue_script( 'oc_jquery' );
-	        wp_enqueue_script( 'jquery-ui-datepicker' );
+	        //wp_register_script( 'oc_jquery', '//code.jquery.com/jquery-1.12.4.js', false, false );
+	        wp_register_script( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
+	        wp_enqueue_script( 'oc_jquery_ui' );
 	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, false );
 		   	wp_enqueue_script( 'oc-front' );
 	    }
-	    
-	    
 	    
 	    function ovulation_calculator(){
 		    $page_title = 'Ovulation Calculator';

@@ -1,3 +1,22 @@
+<?php 
+if(!empty($_POST['emailsend'])):
+	
+	$oc_email_field = sanitize_email($_POST['oc_email']);
+	
+	echo $oc_email_field;
+	
+	if (isset($_POST['oc_subscribe'])) {
+		$oc_subscribe	= $_POST['oc_subscribe'];
+		echo $oc_subscribe;
+	}else{
+		$oc_subscribe = "No";
+		echo $oc_subscribe;
+	}
+	
+endif;
+?>
+
+
 <?php function check_available_date($firstday, $next_period, $selected_period_date){
 	
 	$keep_all_dates = array();
@@ -69,6 +88,7 @@
 	?>
 		<script>
 		$(document).ready(function() {	  
+			
 			var fertileDays = <?php echo '["' . implode('", "', $result) . '"]' ?>;
 			
 			var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
@@ -94,8 +114,6 @@
 		});
 		</script>	
 <?php } // Function ends here
-			
-
 
 if(!empty($_POST['calculator_ok'])):
 
@@ -157,15 +175,19 @@ if(!empty($_POST['calculator_ok'])):
 				<h2>[Send ovulation calendar by email]</h2>
 				<p>Enter your email and we'll send you your ovulation dates for the next 6 months.</p>
 			</div>
+			
+		<form method="post" id="ovulationCalculatorEmail" name="emailSubmitForm" autocomplete="on">
 			<div class="email-box">
-				<input type="email" name="oc_email" value="[Enter your email]"/>
+				<input type="email" name="oc_email" id="ocEmail" value="[Enter your email]"/>
 				<p> [You will at the same time reveive a link to download our e-book Guide to Pregnancy and be subscribed to our newsletter about fertility. ]</p>
 				<div class="subscription-option">
-					<input type="checkbox" id="subscribeNews" name="oc_subscribe" value="newsletter">
+					<input type="checkbox" id="subscribeNews" name="oc_subscribe" value="yes" checked >
 					<label for="subscription"> [Yes, thank you. We may send you your ovulation calendar, a link to download our Guide to Pregnancy e-book and subscribe you to our newsletter from Babyplan. It is written for the sole purpose of increasing your chances of achieving pregnancy. It is released every 2 weeks, can be easily unsubscribed and is written in collaboration with a fertility expert from VivaNeo.]</label>
 				</div>
 				<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
-				<div class="submit-btn"><input type="submit" name="email-send" value="[Send]"/></div>
+		<div class="submit-btn"><input type="submit" name="emailsend" id="emailsend" value="[Send]"/></div>
+		</form>
+				
 			</div>
 		</div>
 	</div>

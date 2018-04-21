@@ -300,12 +300,72 @@
 	border: 2px solid #fff;
 }
 
+.calculator_table .submit-btn input[disabled][type=submit] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+td.fertileDay a.ui-state-default:focus,
+td.periodDay a.ui-state-default:focus,
+td.fertileDay a.ui-state-default:hover,
+td.periodDay a.ui-state-default:hover{
+	box-shadow: none;
+}
+
+
+/* Fertile Style
+------------------------------------*/
 td.fertileDay a.ui-state-default {
     background-color: #96d2af;
     color: #fff;
     background-image: url(images/tick.svg);
     background-repeat: no-repeat;
     background-position: right bottom;
+}
+
+td.fertileDay:nth-child(4) {
+	opacity: 0.4;
+}
+td.fertileDay:nth-child(5) {
+	opacity: 0.6;
+}
+td.fertileDay:nth-child(6) {
+	opacity: 0.8;
+}
+td.fertileDay:nth-child(7) {
+	opacity: 1;
+}
+td.fertileDay:nth-child(1) {
+	opacity: 0.2;
+}
+
+
+
+
+/* Period Style
+------------------------------------*/
+td.periodDay a.ui-state-default {
+	background-color: #878cb4;
+	color: #fff;
+}
+
+
+
+td.periodDay:nth-child(6){
+	opacity: 1;
+}
+td.periodDay:nth-child(7){
+	opacity: 0.8;
+}
+td.periodDay:nth-child(1){
+	opacity: 0.6;
+}
+td.periodDay:nth-child(2){
+	opacity: 0.4;
+}
+td.periodDay:nth-child(3){
+	opacity: 0.2;
 }
 
 /* clearfix short For modern browsers */

@@ -20,6 +20,17 @@ $(function ($) {
 				$("input[name='something']").val(dateText);
 	    	}
 	    });
+	    
+	    
+	    $('#emailsend').prop('disabled',true);
+		$('#ocEmail').keyup(function(){
+			$('#emailsend').prop('disabled', this.value == "" ? true : false);
+			$('#subscribeNews').prop("checked", true);
+    	});
+    	
+    	$('#subscribeNews').change(function () {
+			$('#emailsend').prop("disabled", !this.checked);
+		});
+    	
 	});
-	
 });

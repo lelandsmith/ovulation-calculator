@@ -1,23 +1,37 @@
 <?php 
+
+	
 if(!empty($_POST['emailsend'])):
 	
-	$oc_email_field = sanitize_email($_POST['oc_email']);
-	
-	echo $oc_email_field;
-	
-	if (isset($_POST['oc_subscribe'])) {
-		$oc_subscribe	= $_POST['oc_subscribe'];
-		echo $oc_subscribe;
-	}else{
-		$oc_subscribe = "No";
-		echo $oc_subscribe;
-	}
-	
+		$oc_email_field = sanitize_email($_POST['oc_email']);
+		
+		//echo $oc_email_field;
+		
+		if (isset($_POST['oc_subscribe'])) {
+			$oc_subscribe	= $_POST['oc_subscribe'];
+			//echo $oc_subscribe;
+		}else{
+			$oc_subscribe = "No";
+			//echo $oc_subscribe;
+		}
+		$fertile_results = get_option('oc-fertile_result');
+		$period_results = get_option('oc-period_result');
+		
+		//echo $period_result[0];
+		
+		//echo '<pre>';
+		//print_r($period_result);
+		//echo '</pre>';
+		
+		
+		// mail function
+		include( plugin_dir_path( __FILE__ ) . 'email_template.php');
 endif;
-?>
 
 
-<?php function check_available_date($firstday, $next_period, $selected_period_date){
+
+
+function check_available_date($firstday, $next_period, $selected_period_date){
 	
 	$keep_all_dates = array();
 	$keep_period_dates = array();
@@ -68,9 +82,12 @@ endif;
 		$selected_period_date = $next_period_day;
 	}
 	
-	$result = array_reduce($keep_all_dates, 'array_merge', array());
+	$result = array_reduce($keep_all_dates, 'array_merge', array()); // fertile
 	
-	$period_result = array_reduce($keep_period_dates, 'array_merge', array());
+	$period_result = array_reduce($keep_period_dates, 'array_merge', array()); // periods
+	
+	add_option('oc-period_result', $period_result, '', 'yes');
+	add_option('oc-fertile_result', $result, '', 'yes');
 	
 	//echo '<pre>';
 	//print_r($period_result);
@@ -87,29 +104,32 @@ endif;
 		
 	?>
 		<script>
-		$(document).ready(function() {	  
-			
-			var fertileDays = <?php echo '["' . implode('", "', $result) . '"]' ?>;
-			
-			var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
-			
-			$('#datepicker').datepicker({
-				dayNamesMin: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-				 beforeShowDay: function (date) {
-		            //convert the date to a string format same as the one used in the array
-		            var string = $.datepicker.formatDate('MM dd, yy', date)
-		            if ($.inArray(string, fertileDays) > -1) {
-		                return [true, 'fertileDay', ''];
-		            } 
-		            else if ($.inArray(string, periodDays) > -1) {
-		                return [true, 'periodDay', ''];
-		            }
-		            else {
-		                return [false, '', ''];
-		            }
-		            
-		            
-		        },
+			$ = jQuery.noConflict();
+			$(function ($) {
+			$(document).ready(function() {	  
+				
+				var fertileDays = <?php echo '["' . implode('", "', $result) . '"]' ?>;
+				
+				var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
+				
+				$('#datepicker').datepicker({
+					dayNamesMin: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+					 beforeShowDay: function (date) {
+			            //convert the date to a string format same as the one used in the array
+			            var string = $.datepicker.formatDate('MM dd, yy', date)
+			            if ($.inArray(string, fertileDays) > -1) {
+			                return [true, 'fertileDay', ''];
+			            } 
+			            else if ($.inArray(string, periodDays) > -1) {
+			                return [true, 'periodDay', ''];
+			            }
+			            else {
+			                return [false, '', ''];
+			            }
+			            
+			            
+			        },
+				});
 			});
 		});
 		</script>	
@@ -184,6 +204,7 @@ if(!empty($_POST['calculator_ok'])):
 					<input type="checkbox" id="subscribeNews" name="oc_subscribe" value="yes" checked >
 					<label for="subscription"> [Yes, thank you. We may send you your ovulation calendar, a link to download our Guide to Pregnancy e-book and subscribe you to our newsletter from Babyplan. It is written for the sole purpose of increasing your chances of achieving pregnancy. It is released every 2 weeks, can be easily unsubscribed and is written in collaboration with a fertility expert from VivaNeo.]</label>
 				</div>
+				
 				<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
 		<div class="submit-btn"><input type="submit" name="emailsend" id="emailsend" value="[Send]"/></div>
 		</form>

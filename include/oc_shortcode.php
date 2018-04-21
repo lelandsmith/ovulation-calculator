@@ -1,16 +1,28 @@
-<?php function check_available_date($firstday){
+<?php function check_available_date($firstday, $next_period, $selected_period_date){
 	
 	$keep_all_dates = array();
+	$keep_period_dates = array();
 	for($month_count = 1; $month_count<=6; $month_count++){ // 6 months result
+		
 		$start = strtotime($firstday);
+		
+		$selected_period_d = strtotime($selected_period_date);
+		
 		$dates=array();
 
+		$dates_period = array();
+		
 		
 		for($i = 0; $i<=4; $i++){
 			array_push($dates,date('F d, Y', strtotime("+$i day", $start)));
+			
+			array_push($dates_period,date('F d, Y', strtotime("+$i day", $selected_period_d)));
+			
 			//echo $dates[$i];
 			//echo '<br>';
 			$new_format_date = date("d/m/Y", strtotime($dates[$i]));
+			
+			$new_format_period_date = date("d/m/Y", strtotime($dates_period[$i]));
 			
 			
 			//echo $new_format_date;
@@ -25,24 +37,58 @@
 		array_push($keep_all_dates,$dates);
 		
 		$firstday = $next_fertile_day;
+		
+		
+		
+		$add_period_days = $_POST['days']-4; // minus 4 from selected cycle
+		$last_period_day = $dates_period[4];
+		$next_period_day = date('F d, Y',strtotime($last_period_day) + (24*3600*$add_period_days));
+		
+		array_push($keep_period_dates,$dates_period);
+		
+		$selected_period_date = $next_period_day;
 	}
 	
 	$result = array_reduce($keep_all_dates, 'array_merge', array());
+	
+	$period_result = array_reduce($keep_period_dates, 'array_merge', array());
+	
+	//echo '<pre>';
+	//print_r($period_result);
+	//echo '</pre>';
+	
+	
+	//echo $selected_period_date;
+	
+	// Period dates
+	//echo $next_period;
+	
+	//$next_period = array('May 10, 2018', 'May 21, 2018', 'May 22, 2018', 'May 23, 2018', 'May 24, 2018');;
+	
 		
 	?>
 		<script>
 		$(document).ready(function() {	  
-			var fruits = <?php echo '["' . implode('", "', $result) . '"]' ?>;
+			var fertileDays = <?php echo '["' . implode('", "', $result) . '"]' ?>;
+			
+			var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
+			
 			$('#datepicker').datepicker({
 				dayNamesMin: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
 				 beforeShowDay: function (date) {
 		            //convert the date to a string format same as the one used in the array
 		            var string = $.datepicker.formatDate('MM dd, yy', date)
-		            if ($.inArray(string, fruits) > -1) {
+		            if ($.inArray(string, fertileDays) > -1) {
 		                return [true, 'fertileDay', ''];
-		            } else {
+		            } 
+		            else if ($.inArray(string, periodDays) > -1) {
+		                return [true, 'periodDay', ''];
+		            }
+		            else {
 		                return [false, '', ''];
 		            }
+		            
+		            
 		        },
 			});
 		});
@@ -65,8 +111,17 @@ if(!empty($_POST['calculator_ok'])):
 	//echo $month;
 	//echo $year;
 	
+	
 	//convert to time
 	$lasttime=mktime(0,0,0,$month,$day,$year);
+	
+	$selected_period_date = date("F d, Y",$lasttime);
+	
+	
+	// next period start
+    $next_period=$lasttime + $_POST['days']*24*3600;
+    $next_period=date("F d, Y",$next_period);
+	
     
 	//first fertile day
 	$firstdaytime=$lasttime + $_POST['days']*24*3600 - 16*24*3600;
@@ -83,7 +138,7 @@ if(!empty($_POST['calculator_ok'])):
 			<h2>[Your ovulation dates]</h2>
 			<p>[Press the arrow to see next month's result.]</p>
 			
-			<?php check_available_date($firstday);?>
+			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
 			<div id="datepicker" class="ll-skin-melon"></div>
 		
 			<div class="calculateagain">

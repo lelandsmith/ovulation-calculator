@@ -128,10 +128,6 @@ if (!class_exists("OvulationCalculator")){
 		function ovulation_calculator_shortcodes_init(){
 		    function ovulation_calculator_shortcode($atts = [], $content = null){
 		        // do something to $content
-				echo '<div class="oc_heading">';
-					echo '<h1 class="oc_title">Ovulation Calculator</h1>';
-					echo '<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>';
-				echo '</div>';
 				include( plugin_dir_path( __FILE__ ) . 'include/oc_shortcode.php');
 				
 		        // always return

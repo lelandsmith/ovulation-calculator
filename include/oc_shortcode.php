@@ -4,7 +4,7 @@
 if(!empty($_POST['emailsend'])):
 	
 		$oc_email_field = sanitize_email($_POST['oc_email']);
-		
+	
 		//echo $oc_email_field;
 		
 		if (isset($_POST['oc_subscribe'])) {
@@ -28,6 +28,11 @@ if(!empty($_POST['emailsend'])):
 		include( plugin_dir_path( __FILE__ ) . 'email_template.php');
 endif;
 
+
+echo '<div class="oc_heading">';
+	echo '<h1 class="oc_title">Ovulation Calculator</h1>';
+	echo '<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>';
+echo '</div>';
 
 
 
@@ -113,7 +118,8 @@ function check_available_date($firstday, $next_period, $selected_period_date){
 				var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
 				
 				$('#datepicker').datepicker({
-					dayNamesMin: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+					firstDay: 1, // Monday
 					 beforeShowDay: function (date) {
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
@@ -218,7 +224,7 @@ if(!empty($_POST['calculator_ok'])):
 			<h2>[Calculate ovulation]</h2>
 			<p>[First day of your last peroid]</p>
 			<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-			<input type="text" name="something" value="[Select date...]" id="calendarInput"/>
+			<input type="text" name="something" placeholder="[Select date...]" value="[Select date...]" id="calendarInput"/>
 	
 			<div id="calendar" class="ll-skin-melon"></div>
 	
@@ -234,7 +240,7 @@ if(!empty($_POST['calculator_ok'])):
 				?>
 			</select>
 			<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
-			<div class="submit-btn"><input type="submit" name="calculator_ok" value="[Submit]"></div>
+			<div class="submit-btn"><input type="submit" name="calculator_ok" id="calculatorOk" value="[Submit]"></div>
 		</form>
 		
 		<div class="message-eng">

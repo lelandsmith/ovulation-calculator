@@ -3,7 +3,11 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
 		<title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+		
 		<style type="text/css">
+			@media screen {
+			@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Regular.woff'?>'); }
+			@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Medium.woff'?>'); }
 			
 			/* CLIENT-SPECIFIC STYLES */
 		    body, table, td, a{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
@@ -27,17 +31,14 @@
 		    /* ANDROID CENTER FIX */
 			div[style*="margin: 16px 0;"] { margin: 0 !important; }
 			
-			@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.woff'); }
-			@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.woff'); }
-			
 			#header_wrapper h1{
 				font-family: "WOFF Juli Sans-Medium"; 
 				font-size: 35px;
 				margin: 0;
-				padding: 0;
+				padding: 1rem 0;
 				color: #9E8977;
 				text-align: center;
-				line-height: 1.25
+				line-height: 1.25;
 			}
 			h2{
 				font-family: "WOFF Juli Sans-Regular"; 
@@ -46,32 +47,28 @@
 				line-height: 1.25;
 				margin: 0;
 				padding: 1.5em 0 0;
-				text-align: center;
 			}
 			div#body_content_inner{
 				text-align: center;
 			}
 			.download-ebook{
-				padding: 1.5em 0 0;
+				padding: 0 0 2em;
 			}
 			.download-ebook h2{
 				padding-bottom: 1em;
 				padding-top: 0;
+				font-weight: normal;
+				text-align: left;
+				padding-left: 30px;
 			}
 			.download-btn{
 				text-align: center;
 				padding: 0;
+				position: relative;
 			}
 			.download-btn-parent{
 				position: relative;
 			}
-			.download-ebook i.fa.fa-angle-right{
-				position: absolute;
-				right: 20px;
-				top:5px;
-				color: #fff;
-			}
-			
 			#downloadEbook{
 				width: 100%;
 				border-radius: 5px;
@@ -79,13 +76,14 @@
 				color: #fff;
 				font-family: "WOFF2 Juli Sans-Regular"; 
 				font-size: 16px;
-				padding: 0.8em 2em;
+				padding: 0.5em 0;
 				border: 0;
 				box-shadow: none;
 				cursor: pointer;
 				display: inline-block;
-				line-height: 1;
+				line-height: 2;
 				text-shadow: none;
+				text-decoration: none;
 			}
 			
 			.footer-box {
@@ -96,6 +94,7 @@
 				text-align: left;
 				padding-left: 15px;
 				padding-right: 15px;
+				padding-top: 15px;
 			}
 			
 			.footer-box .col-1 h2,
@@ -112,8 +111,8 @@
 				margin-bottom: 20px;
 			}
 			.footer-box .col-1 p{
-				margin-bottom: 5px;
-				font-size: 12px;
+				margin-bottom: 0;
+				font-size: 14px;
 			}
 			.footer-box .col-1 a{
 				color: #ccc;
@@ -130,7 +129,7 @@
 				font-style: italic;
 				color: #ccc;
 				font-size: 12px;
-				margin: 1.5em 0;
+				margin: 1.5em 0 0;
 			}
 			.footer_bottom p,
 			.footer_bottom a,
@@ -162,10 +161,23 @@
 			tr{
 				border: 0;
 			}
+			.email-ovulation-dates h2 {
+				padding-bottom: 1em;
+				padding-left: 50px;
+				font-weight: normal;
+			}
+			.six-month-dates {
+				padding-left: 80px;
+			}
+			hr{
+				border-bottom: 1px solid #ccc;
+			}
+			#rightArrow{
+				vertical-align: middle;
+				float: right;
+			}
+		}
 		</style>
-		
-		
-		
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 		<div id="wrapper" dir="<?php echo is_rtl() ? 'rtl' : 'ltr'?>">
@@ -180,20 +192,61 @@
 						</div>
 						<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
 							<tr>
-								<td align="center" valign="top">
+								<td align="left" valign="top">
 									<!-- Header -->
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
 										<tr>
 											<td id="header_wrapper">
-												<h1>Thanks for using the Babyplan Ovulation Calculator</h1>
+												<h1 style="font-family:'WOFF Juli Sans-Medium'">Thanks for using the Babyplan Ovulation Calculator</h1>
 											</td>
 										</tr>
 									</table>
 									<!-- End Header -->
 								</td>
 							</tr>
+							
 							<tr>
-								<td align="center" valign="top">
+								<td align="left" valign="top">
+									<div class="email-ovulation-dates">
+										<h2>Here is your 6 month ovulation calendar:</h2>
+										<div class="six-month-dates">
+											<b>Ovulation 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[0]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[4]?></b>
+											<br>
+											<b>Ovulation 2:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[5]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[9]?></b>
+											<br>
+											<b>Ovulation 3:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[10]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[14]?></b>
+											<br>
+											<b>Ovulation 4:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[15]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[19]?></b>
+											<br>
+											<b>Ovulation 5:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[20]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[24]?></b>
+											<br>
+											<b>Ovulation 6:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php echo $fertile_results[25]?></b>
+											<b> - </b>
+											<b><?php echo $fertile_results[29]?></b>
+											<br>
+										</div>
+									</div>
+								</td>		
+							</tr>
+							
+							<tr>
+								<td align="left" valign="top">
 									<!-- Body -->
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body">
 										<tr>

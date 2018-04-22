@@ -23,7 +23,7 @@
 												
 												</div>
 												<div class="col-2">
-													<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/laby-portrait.jpg';?>" alt="lady picture">
+													<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/laby-portrait.jpg';?>" alt="lady picture" width="200">
 												</div>
 											</div>
 										</tr>

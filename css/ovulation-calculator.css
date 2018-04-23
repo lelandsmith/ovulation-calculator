@@ -33,7 +33,7 @@
 }
 
 .ui-datepicker{
-	width: 100%;
+	width: 100%!important;
 }
 
 .oc_heading{
@@ -140,6 +140,7 @@
 .calculator_table input[type="text"]:focus{
 	color: #999;
 	border-color: #ccc;
+	outline: 0;
 }
 .calculateagain,
 .calculator_table .submit-btn{
@@ -152,6 +153,7 @@
 	width: 100%;
 	border-radius: 5px;
 	background-color: #a8d1af;
+	background-image: none;
 	color: #fff;
 	font-family: "WOFF2 Juli Sans-Regular"; 
 	font-size: 20px;
@@ -164,9 +166,10 @@
 	text-shadow: none;
 }
 
-
+.calculator_table .submit-btn input[type=submit]:focus,
 .calculator_table .submit-btn input[type=submit]:hover{
 	background-color: #9b9893;	
+	outline: 0;
 }
 
 .calculator_table form p{
@@ -297,7 +300,7 @@
 	box-shadow: none;
 }
 .ui-state-default, .ui-widget-content .ui-state-default{
-	border: 2px solid #fff;
+	border: 2px solid #fff!important;
 }
 
 .calculator_table .submit-btn input[disabled][type=submit] {
@@ -311,6 +314,7 @@ td.periodDay a.ui-state-default:focus,
 td.fertileDay a.ui-state-default:hover,
 td.periodDay a.ui-state-default:hover{
 	box-shadow: none;
+	outline: 0;
 }
 
 

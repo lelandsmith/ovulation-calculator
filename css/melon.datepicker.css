@@ -5,7 +5,7 @@
 .ll-skin-melon .ui-widget {
 	font-family: "WOFF2 Juli Sans-Medium", Helvetica, Arial, Verdana, sans-serif;
 	background: #fff;
-	border: none;
+	border: none!important;
 	border-radius: 0;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;

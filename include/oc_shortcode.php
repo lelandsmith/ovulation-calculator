@@ -1,5 +1,6 @@
 <?php 
-
+// Get option values from Database. Option Value name is : ovulationcalculator-group
+$options = get_option('ovulationcalculator-group');
 	
 if(!empty($_POST['emailsend'])):
 	
@@ -15,28 +16,38 @@ if(!empty($_POST['emailsend'])):
 			//echo $oc_subscribe;
 		}
 		$fertile_results = get_option('oc-fertile_result');
-		$period_results = get_option('oc-period_result');
+		//$period_results = get_option('oc-period_result');
 		
-		//echo $period_result[0];
+		
+		$fertile_result_for_email = array_reduce($fertile_results, 'array_merge', array());
 		
 		//echo '<pre>';
-		//print_r($period_result);
+		//print_r($fertile_result_for_email);
 		//echo '</pre>';
 		
 		
 		// mail function
 		include( plugin_dir_path( __FILE__ ) . 'email_template.php');
-endif;
+endif;?>
 
 
-echo '<div class="oc_heading">';
-	echo '<h1 class="oc_title">Ovulation Calculator</h1>';
-	echo '<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>';
-echo '</div>';
+<div class="oc_heading">
+	<?php if(!empty($options['ovulation-calculator'])):
+		printf(__('<h1 class="oc_title">%s</h1>', 'ovulation-calculator'), $options['ovulation-calculator']);
+	else:
+		printf(__('<h1 class="oc_title">Ovulation Calculator</h1>', 'ovulation-calculator'));
+	endif;
+	
+	if(!empty($options['pregnancy-greatest'])):
+		printf(__('<p class="oc_subtitle">%s</p>', 'ovulation-calculator'), $options['pregnancy-greatest']);
+	else:
+		printf(__('<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>', 'ovulation-calculator'));
+	endif;?>
+</div>
 
 
 
-function check_available_date($firstday, $next_period, $selected_period_date){
+<?php function check_available_date($firstday, $next_period, $selected_period_date){
 	
 	$keep_all_dates = array();
 	$keep_period_dates = array();
@@ -51,7 +62,7 @@ function check_available_date($firstday, $next_period, $selected_period_date){
 		$dates_period = array();
 		
 		
-		for($i = 0; $i<=4; $i++){
+		for($i = 0; $i<=5; $i++){
 			array_push($dates,date('F d, Y', strtotime("+$i day", $start)));
 			
 			array_push($dates_period,date('F d, Y', strtotime("+$i day", $selected_period_d)));
@@ -68,8 +79,8 @@ function check_available_date($firstday, $next_period, $selected_period_date){
 		}
 		
 		//echo '<br>';
-		$add_days = $_POST['days']-4; // minus 4 from selected cycle 
-		$last_fertile_day = $dates[4];
+		$add_days = $_POST['days']-5; // minus 5 from selected cycle 
+		$last_fertile_day = $dates[5];
 		$next_fertile_day = date('F d, Y',strtotime($last_fertile_day) + (24*3600*$add_days));
 		
 		array_push($keep_all_dates,$dates);
@@ -78,8 +89,8 @@ function check_available_date($firstday, $next_period, $selected_period_date){
 		
 		
 		
-		$add_period_days = $_POST['days']-4; // minus 4 from selected cycle
-		$last_period_day = $dates_period[4];
+		$add_period_days = $_POST['days']-5; // minus 4 from selected cycle
+		$last_period_day = $dates_period[5];
 		$next_period_day = date('F d, Y',strtotime($last_period_day) + (24*3600*$add_period_days));
 		
 		array_push($keep_period_dates,$dates_period);
@@ -87,26 +98,24 @@ function check_available_date($firstday, $next_period, $selected_period_date){
 		$selected_period_date = $next_period_day;
 	}
 	
-	$result = array_reduce($keep_all_dates, 'array_merge', array()); // fertile
+	//var_dump(array_reduce($keep_all_dates, 'array_merge', array()));
 	
-	$period_result = array_reduce($keep_period_dates, 'array_merge', array()); // periods
+	//$result = array_reduce($keep_all_dates, 'array_merge', array()); // fertile
 	
-	add_option('oc-period_result', $period_result, '', 'yes');
-	add_option('oc-fertile_result', $result, '', 'yes');
+	//$period_result = array_reduce($keep_period_dates, 'array_merge', array()); // periods
 	
-	//echo '<pre>';
-	//print_r($period_result);
-	//echo '</pre>';
-	
-	
-	//echo $selected_period_date;
-	
-	// Period dates
-	//echo $next_period;
-	
-	//$next_period = array('May 10, 2018', 'May 21, 2018', 'May 22, 2018', 'May 23, 2018', 'May 24, 2018');;
-	
+	add_option('oc-period_result', $keep_period_dates, '', 'no');
+	add_option('oc-fertile_result', $keep_all_dates, '', 'no');
 		
+	// Fertile
+	$fertile_from_db = get_option('oc-fertile_result');
+	$result = array_reduce($fertile_from_db, 'array_merge', array());
+	
+	
+	// Period
+	$period_from_db = get_option('oc-period_result');
+	$period_result = array_reduce($period_from_db, 'array_merge', array());
+			
 	?>
 		<script>
 			$ = jQuery.noConflict();
@@ -177,14 +186,12 @@ if(!empty($_POST['calculator_ok'])):
 		
 	?>
 	<div class="calculator_table">
-		
 		<div class="calendar-area">
 			<h2>[Your ovulation dates]</h2>
 			<p>[Press the arrow to see next month's result.]</p>
 			
 			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
 			<div id="datepicker" class="ll-skin-melon"></div>
-		
 			<div class="calculateagain">
 				<div class="fertile">
 				<a href="#"><img src="<?php echo plugins_url('/img/tick.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;[Fertile]</a>
@@ -194,16 +201,13 @@ if(!empty($_POST['calculator_ok'])):
 				</div>
 			</div>
 		</div>
-		
-		
 		<div class="email-area">
 			<div class="email-message">
 				<h2>[Send ovulation calendar by email]</h2>
 				<p>Enter your email and we'll send you your ovulation dates for the next 6 months.</p>
 			</div>
-			
-		<form method="post" id="ovulationCalculatorEmail" name="emailSubmitForm" autocomplete="on">
-			<div class="email-box">
+			<form method="post" id="ovulationCalculatorEmail" name="emailSubmitForm" autocomplete="on">
+				<div class="email-box">
 				<input type="email" name="oc_email" id="ocEmail" value="[Enter your email]"/>
 				<p> [You will at the same time reveive a link to download our e-book Guide to Pregnancy and be subscribed to our newsletter about fertility. ]</p>
 				<div class="subscription-option">
@@ -212,23 +216,37 @@ if(!empty($_POST['calculator_ok'])):
 				</div>
 				
 				<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
-		<div class="submit-btn"><input type="submit" name="emailsend" id="emailsend" value="[Send]"/></div>
-		</form>
-				
+				<div class="submit-btn"><input type="submit" name="emailsend" id="emailsend" value="[Send]"/></div>
 			</div>
+			</form>
 		</div>
 	</div>
 <?php else: //the calculator comes here ?>
 	<div class="calculator_table">
 		<form method="post" id="ovulationCalculatorForm" autocomplete="off">
-			<h2>[Calculate ovulation]</h2>
-			<p>[First day of your last peroid]</p>
+			<?php if(!empty($options['calculate-ovulation'])):?>
+				<h2><?php echo $options['calculate-ovulation']?></h2>
+			<?php else:?>
+				<h2>[Calculate ovulation]</h2>
+			<?php endif?>
+			<?php if(!empty($options['first-day-last-period'])):?>
+				<p><?php echo $options['first-day-last-period']?></p>
+			<?php else:?>
+				<p>[First day of your last peroid]</p>
+			<?php endif?>
 			<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
-			<input type="text" name="something" placeholder="[Select date...]" value="[Select date...]" id="calendarInput"/>
-	
+			<?php if(!empty($options['select-date'])):?>
+			<input type="text" name="something" placeholder="<?php echo $options['select-date']?>..." value="<?php echo $options['select-date']?>..." id="calendarInput"/>
+			<?php else:?>
+			<input type="text" name="something" placeholder="[Select date...]" value="Select date..." id="calendarInput"/>
+			<?php endif?>
 			<div id="calendar" class="ll-skin-melon"></div>
-	
-			<p>[Length of your cycle]</p> 
+			
+			<?php if(!empty($options['length-cycle'])):?>
+				<p><?php echo $options['length-cycle']?></p>
+			<?php else:?>
+				<p>[Length of your cycle]</p>
+			<?php endif?>
 			<select name="days">
 				<?php
 				for($i=20;$i<=45;$i++)
@@ -240,13 +258,23 @@ if(!empty($_POST['calculator_ok'])):
 				?>
 			</select>
 			<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
-			<div class="submit-btn"><input type="submit" name="calculator_ok" id="calculatorOk" value="[Submit]"></div>
+			<div class="submit-btn">
+				<?php if(!empty($options['oc-submit'])):?>
+					<input type="submit" name="calculator_ok" id="calculatorOk" value="<?php echo $options['oc-submit']?>">
+				<?php else:?>
+					<input type="submit" name="calculator_ok" id="calculatorOk" value="[Submit]">
+				<?php endif?>
+			</div>
 		</form>
 		
 		<div class="message-eng">
+			<?php if(!empty($options['oc-message'])):?>
+				<?php echo $options['oc-message']?>
+			<?php else:?>
 			<p>Calculate your ovulation with our ovulation calculator and find out when you have the greatest chance of achieving pregnancy. Using The ovulation calculator lets you quickly and accurately get one overview of your cycle and keep ovulation calendars, you saw can find the days when you are most fertile.</p>
 			<h2>When can you become pregnant?</h2>
 			<p>Women are only fertile in a relatively short period in each cycle. Therefore it is also important to have an egg release calendar, That can give an overview of when during the month you is most fertile if you want to become pregnant. </p>
+			<?php endif?>
 		</div>
 		
 	</div>

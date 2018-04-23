@@ -372,6 +372,7 @@ td.periodDay:nth-child(3){
 	opacity: 0.2;
 }
 
+
 /* clearfix short For modern browsers */
 .cf:before,
 .cf:after { content:""; display:table; }

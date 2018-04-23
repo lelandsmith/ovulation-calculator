@@ -45,7 +45,22 @@ if (!class_exists("OvulationCalculator")){
         
         # Wordpress internal registration
 		function register_settings(){
-        
+        	# set defaults
+			$options = array(
+				'ovulation-calculator'	=>	'Ovulation Calculator',
+				'pregnancy-greatest'	=>	'When are your chances of pregnancy greatest?',
+				'calculate-ovulation'	=> 'Calculate ovulation',
+				'first-day-last-period'	=>	'First day of your last period',
+				'select-date'	=>	'Select date',
+				'length-cycle'	=>	'Length of your cycle',
+				'oc-submit'		=>	'Submit',
+				'oc-message'	=>	'<p>Calculate your ovulation with our ovulation calculator and find out when you have the greatest chance of achieving pregnancy. Using The ovulation calculator lets you quickly and accurately get one overview of your cycle and keep ovulation calendars, you saw can find the days when you are most fertile.</p>
+			<h2>When can you become pregnant?</h2>
+			<p>Women are only fertile in a relatively short period in each cycle. Therefore it is also important to have an egg release calendar, That can give an overview of when during the month you is most fertile if you want to become pregnant. </p>'
+				
+			);
+			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
+			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
         }
         
         // Admin Style and JS
@@ -56,6 +71,8 @@ if (!class_exists("OvulationCalculator")){
 	       	 wp_enqueue_script('jquery-ui-tabs');
 		   	 wp_register_script('oc-admin-tab', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, false );
 		   	 wp_enqueue_script('oc-admin-tab');
+		   	 
+		   	 wp_enqueue_style( 'oc-admin-custom', plugins_url( '/include/admin/css/ovulation-calculator-admin.css' , __FILE__ ) );
 	     }   
 	     
 	     
@@ -85,8 +102,8 @@ if (!class_exists("OvulationCalculator")){
 	
 		}
 		function ovulation_calculator_menu(){?>
-			<div class="wrap">
-				<h1><?php _e('Ovulation Calculator', 'ovulation-calculator'); ?></h1>
+			<div class="wrap" id="OvulationCalculator">
+				<h1 class="oc_admin_heading"><?php _e('Ovulation Calculator', 'ovulation-calculator'); ?></h1>
 				<?php $this->show_navigation();?>
 			</div>
 		<?php }
@@ -94,7 +111,8 @@ if (!class_exists("OvulationCalculator")){
 		function show_navigation(){
 			$tabs = array(
 	        	'first'   => __( 'General', 'ovulation-calculator' ), 
-				'second'  => __( 'Translation', 'ovulation-calculator' ),
+				'second'  => __( 'Calendar Translation', 'ovulation-calculator' ),
+				'third'  => __( 'Email Translation', 'ovulation-calculator' ),
 			);
 		    echo '<div id="tabs">';
 			    $html = '<ul>';
@@ -114,13 +132,16 @@ if (!class_exists("OvulationCalculator")){
 			   	<?php $options = get_option('ovulationcalculator-group'); ?>
 			   	
 			   	<div id="first"> 
-				   <?php include( plugin_dir_path( __FILE__ ) . 'include/general.php');?>
+				   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/general.php');?>
 				</div>
 				<div id="second">
-					<?php include( plugin_dir_path( __FILE__ ) . 'include/translation.php');?>
+					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/translation.php');?>
+				</div>
+				<div id="third">
+					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/emailtranslation.php');?>
 				</div>
 			   	
-			   	<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'allinonewoo') ?>" /></p>
+			   	<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'ovulation-calculator') ?>" /></p>
 			</form>
 		<?php }
 			
@@ -128,10 +149,13 @@ if (!class_exists("OvulationCalculator")){
 		function ovulation_calculator_shortcodes_init(){
 		    function ovulation_calculator_shortcode($atts = [], $content = null){
 		        // do something to $content
+				ob_start();
+				
 				include( plugin_dir_path( __FILE__ ) . 'include/oc_shortcode.php');
 				
+				$output = ob_get_clean();
 		        // always return
-		        return $content;
+		        return $output;
 		    }
 		    add_shortcode('ovulationcalculator', 'ovulation_calculator_shortcode');
 		}

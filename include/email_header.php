@@ -211,34 +211,34 @@
 										<h2>Here is your 6 month ovulation calendar:</h2>
 										<div class="six-month-dates">
 											<b>Ovulation 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[0]?></b>
+											<b><?php echo $fertile_result_for_email[0]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[4]?></b>
+											<b><?php echo $fertile_result_for_email[5]?></b>
 											<br>
 											<b>Ovulation 2:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[5]?></b>
+											<b><?php echo $fertile_result_for_email[6]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[9]?></b>
+											<b><?php echo $fertile_result_for_email[11]?></b>
 											<br>
 											<b>Ovulation 3:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[10]?></b>
+											<b><?php echo $fertile_result_for_email[12]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[14]?></b>
+											<b><?php echo $fertile_result_for_email[17]?></b>
 											<br>
 											<b>Ovulation 4:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[15]?></b>
+											<b><?php echo $fertile_result_for_email[18]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[19]?></b>
+											<b><?php echo $fertile_result_for_email[23]?></b>
 											<br>
 											<b>Ovulation 5:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[20]?></b>
+											<b><?php echo $fertile_result_for_email[24]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[24]?></b>
+											<b><?php echo $fertile_result_for_email[29]?></b>
 											<br>
 											<b>Ovulation 6:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_results[25]?></b>
+											<b><?php echo $fertile_result_for_email[30]?></b>
 											<b> - </b>
-											<b><?php echo $fertile_results[29]?></b>
+											<b><?php echo $fertile_result_for_email[35]?></b>
 											<br>
 										</div>
 									</div>

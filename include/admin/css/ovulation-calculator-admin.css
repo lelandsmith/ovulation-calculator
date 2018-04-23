@@ -1,0 +1,33 @@
+@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.woff'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Regular'; src: url('../fonts/JuliSans-Regular.woff2'); }
+
+@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.woff'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.woff2'); }
+
+@font-face { font-family: 'WOFF Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.woff'); }
+@font-face { font-family: 'WOFF2 Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.woff2'); }
+
+#OvulationCalculator h1.oc_admin_heading{
+	font-family: "WOFF2 Juli Sans-Medium";
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	color: #9E8977;
+}
+
+#OvulationCalculator .ui-state-default a, 
+#OvulationCalculator .ui-state-default a:link{
+	font-family: "WOFF2 Juli Sans-Regular";
+	padding: 1em 2em;
+}
+
+#OvulationCalculator .ui-state-default a:focus{
+	outline: 0;
+	box-shadow: none;
+}
+
+#OvulationCalculator .ui-state-active, 
+#OvulationCalculator .ui-widget-content .ui-state-active, 
+#OvulationCalculator .ui-widget-header .ui-state-active{
+	background: #9E8977;
+	border: 1px solid #9E8977;
+}

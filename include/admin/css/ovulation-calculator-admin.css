@@ -31,3 +31,16 @@
 	background: #9E8977;
 	border: 1px solid #9E8977;
 }
+
+#OvulationCalculator .ui-widget-content{
+	border: 0;
+	background: transparent;
+}
+
+#OvulationCalculator .ui-widget-header{
+	border-bottom: 1px solid #ddd;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	background: transparent;
+}

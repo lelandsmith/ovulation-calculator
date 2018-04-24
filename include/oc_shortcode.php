@@ -187,8 +187,12 @@ if(!empty($_POST['calculator_ok'])):
 	?>
 	<div class="calculator_table">
 		<div class="calendar-area">
-			<h2>[Your ovulation dates]</h2>
-			<p>[Press the arrow to see next month's result.]</p>
+			<?php if(!empty($options['oc-dates'])):
+				printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-dates']);
+			endif;
+			if(!empty($options['oc-next-month-results'])):
+				printf(__('<p>%s</p>', 'ovulation-calculator'), $options['oc-next-month-results']);
+			endif;?>
 			
 			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
 			<div id="datepicker" class="ll-skin-melon"></div>

@@ -54,10 +54,16 @@ if (!class_exists("OvulationCalculator")){
 				'select-date'	=>	'Select date',
 				'length-cycle'	=>	'Length of your cycle',
 				'oc-submit'		=>	'Submit',
-				'oc-message'	=>	'<p>Calculate your ovulation with our ovulation calculator and find out when you have the greatest chance of achieving pregnancy. Using The ovulation calculator lets you quickly and accurately get one overview of your cycle and keep ovulation calendars, you saw can find the days when you are most fertile.</p>
-			<h2>When can you become pregnant?</h2>
-			<p>Women are only fertile in a relatively short period in each cycle. Therefore it is also important to have an egg release calendar, That can give an overview of when during the month you is most fertile if you want to become pregnant. </p>'
-				
+				'oc-message'	=>	'Message below the Calendar',
+				'oc-dates'	=>	'Your ovulation dates',
+				'oc-next-month-results'	=>	'Press the arrow to see next month(s) result',
+				'oc-fertile'	=>	'Fertile',
+				'oc-change-date'	=>	'Change date',
+				'oc-calendar-email'	=>	'Send ovulation calendar by email',
+				'oc-center-email'	=>	'Enter your email',
+				'oc-download-message'	=>	'Type Message in your own language',
+				'oc-terms-message'	=>	'Terms & Conditions',
+				'oc-email-send'	=>	'Send'
 			);
 			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
 			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
@@ -112,7 +118,7 @@ if (!class_exists("OvulationCalculator")){
 			$tabs = array(
 	        	'first'   => __( 'General', 'ovulation-calculator' ), 
 				'second'  => __( 'Calendar Translation', 'ovulation-calculator' ),
-				'third'  => __( 'Email Translation', 'ovulation-calculator' ),
+				'third'  => __( 'Email Template Translation', 'ovulation-calculator' ),
 			);
 		    echo '<div id="tabs">';
 			    $html = '<ul>';

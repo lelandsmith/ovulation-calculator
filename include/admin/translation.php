@@ -1,5 +1,5 @@
 <h1 class="screen-reader-text">Calendar Language Translation</h1>
-<p class="description">This is where you translate Calendar.</p>
+<h2>This is where you translate Calendar.</h2>
 <table class="form-table">
 	<tbody>
 		
@@ -106,6 +106,14 @@
 		<td>
 			<input type="text" name="ovulationcalculator-group[oc-calendar-email]" value="<?php echo (!empty($options['oc-calendar-email'])) ?  $options['oc-calendar-email'] : 'Send ovulation calendar by email'?>" class="regular-text"/>
 			<p class="description">Send ovulation calendar by email</p>
+		</td>
+		</tr>
+		
+		<tr valign="top">
+		<th scope="row"><?php _e("Enter your email and we'll send you your ovulation dates for the next 6 months.", "ovulationcalculator-group");?></th>
+		<td>
+			<input type="text" name="ovulationcalculator-group[oc-send-dates-email]" value="<?php echo (!empty($options['oc-send-dates-email'])) ?  $options['oc-send-dates-email'] : 'Enter your email and we will send you your ovulation dates for the next 6 months.'?>" class="large-text"/>
+			<p class="description">Enter your email and we'll send you your ovulation dates for the next 6 months.</p>
 		</td>
 		</tr>
 		

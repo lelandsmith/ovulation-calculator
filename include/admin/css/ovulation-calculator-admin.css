@@ -44,3 +44,64 @@
 	border-right: 0;
 	background: transparent;
 }
+#OvulationCalculator h2,
+#OvulationCalculator .form-table th{
+	font-family: "WOFF2 Juli Sans-Medium";
+	margin-bottom: 2em;
+}
+
+#OvulationCalculator p.description{
+	font-family: "WOFF2 Juli Sans-Regular";
+}
+#OvulationCalculator #uploadButtonLogo,
+#OvulationCalculator #uploadButtonPerson,
+#OvulationCalculator #uploadButtonHeader,
+#OvulationCalculator #uploadButton,
+#OvulationCalculator .large-text,
+#OvulationCalculator .regular-text{
+	font-family: "WOFF2 Juli Sans-Regular";
+	background: #fff;
+    border: 1px solid #ccc;
+    display: block;
+    padding: 0.7em;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+#OvulationCalculator #uploadButtonLogo,
+#OvulationCalculator #uploadButtonPerson,
+#OvulationCalculator #uploadButtonHeader,
+#OvulationCalculator #uploadButton{
+	height: 100%;
+	border-radius: 0;
+	background-color: #a8d1af;
+	color: #fff;
+}
+
+#OvulationCalculator h3{
+	font-family: "WOFF2 Juli Sans-Medium";
+	margin-bottom: 0;
+}
+
+#OvulationCalculator .preview{
+	float: left;
+}
+#OvulationCalculator #imgPreviewLogo,
+#OvulationCalculator #imgPreviewPerson,
+#OvulationCalculator #imgPreviewHeader,
+#OvulationCalculator #imgPreview{
+	width: 250px;
+	height: 100%;
+	padding: 2px;
+	margin: 0;
+	background-color: #ccc;
+}
+#OvulationCalculator #imageURLLogo,
+#OvulationCalculator #imageURLPerson,
+#OvulationCalculator #imageURLHeader,
+#OvulationCalculator #imageURL{
+	float: left;
+}
+
+#OvulationCalculator .clearfix{
+	clear: both;
+}

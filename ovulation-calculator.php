@@ -60,10 +60,28 @@ if (!class_exists("OvulationCalculator")){
 				'oc-fertile'	=>	'Fertile',
 				'oc-change-date'	=>	'Change date',
 				'oc-calendar-email'	=>	'Send ovulation calendar by email',
-				'oc-center-email'	=>	'Enter your email',
+				'oc-send-dates-email'	=>	'Enter your email and we will send you your ovulation dates for the next 6 months',
+				'oc-enter-email'	=>	'Enter your email',
 				'oc-download-message'	=>	'Type Message in your own language',
 				'oc-terms-message'	=>	'Terms & Conditions',
-				'oc-email-send'	=>	'Send'
+				'oc-email-send'	=>	'Send',
+				'oc-email-logo'	=>	'Upload Email Logo',
+				'oc-email-header-image'	=>	'E-mail Header Image',
+				'oc-email-footer-title'	=>	'Title',
+				'oc-email-footer-subtitle'	=>	'SubTitle',
+				'oc-email-footer-tel'	=>	'Telephone',
+				'oc-email-footer-email'	=>	'E-mail',
+				'oc-email-person-image'	=>	'Upload Person Image',
+				'oc-email-footer-logo'	=>	'Upload Footer Logo',
+				'oc-email-footer-copyright'	=>	'Copyright Text',
+				'oc-email-footer-bottom'	=>	'Footer Bottom Texts',
+				'oc-email-header-title'	=>	'Thanks for using the Babyplan Ovulation Calculator',
+				'oc-email-header-ovulation-dates'	=>	'Here is your 6 month ovulation calendar:',
+				'oc-email-header-ovulation-text'	=>	'Ovulation',
+				'oc-email-guide'	=>	'Get a copy of the Babyplan Guide to Pregnancy here:',
+				'oc-email-download'	=>	'Download e-book',
+				'oc-email-download-url'	=>	'',
+				'oc-email-sent-msg'	=>	'E-mail is Sent.'
 			);
 			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
 			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
@@ -79,6 +97,9 @@ if (!class_exists("OvulationCalculator")){
 		   	 wp_enqueue_script('oc-admin-tab');
 		   	 
 		   	 wp_enqueue_style( 'oc-admin-custom', plugins_url( '/include/admin/css/ovulation-calculator-admin.css' , __FILE__ ) );
+		   	 wp_enqueue_media();
+		   	 wp_register_script( 'oc-media-lib-uploader-js', plugins_url( '/include/admin/js/media-lib-uploader.js' , __FILE__ ), array('jquery') );
+		 	wp_enqueue_script( 'oc-media-lib-uploader-js' );
 	     }   
 	     
 	     

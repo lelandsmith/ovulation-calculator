@@ -10,10 +10,12 @@
 	$Body = "";?>
 	
 	<div class="download-ebook">
-		<h2>Get a copy of the Babyplan Guide to Pregnancy here:</h2>
+		<?php if(!empty($options['oc-email-guide'])):
+			printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-email-guide']);
+		endif;?>
 			<div class="download-btn-parent">
 				<div class="download-btn">	
-					<a href="#" id="downloadEbook">Download e-book <img id="rightArrow" src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/right.png';?>"></a>
+					<a href="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download-url'])?>" id="downloadEbook"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download'])?> <img id="rightArrow" src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/right.png';?>"></a>
 				</div>
 			</div>
 	</div>
@@ -21,14 +23,16 @@
 	<?php include( plugin_dir_path( __FILE__ ) . 'email_footer.php'); 
 	
 	$Body .= ob_get_clean();
+	
+	echo $Body;
 		
 	$message_sent = wp_mail($oc_email_field, $Subject, $Body, $headers);
-	if($message_sent){
-		echo '<p class="oc_subtitle" style="text-align:center;border-bottom:1px solid;padding-bottom:1rem;">E-mail is sent.</p>';
-		return true;
+	if($message_sent):?>
+		<p class="oc_subtitle emailResponse"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-sent-msg'])?></p>
+		<?php return true;
 		
-	}else{
-		echo '<p class="oc_subtitle" style="text-align:center;border-bottom:1px solid;padding-bottom:1rem;">E-mail is not sent!</p>';
-		return true;
-	}
+	else:?>
+		<p class="oc_subtitle emailResponse">E-mail is not sent!</p>
+		<?php return true;
+	endif;
 ?>

@@ -2,7 +2,7 @@ $ = jQuery.noConflict();
 $(function ($) {	
 	
 	$(document).ready(function() {
-	  	$('#calendarInput').click(function(){
+	  	$('#calendarInput, .calculator_table i.fa.fa-calendar').click(function(){
 	  		$('#calendar').toggle();
 		});
 		
@@ -13,6 +13,7 @@ $(function ($) {
 		  	inline: true,
 		  	showOtherMonths: true,
 	    	dateFormat: "dd/mm/yy",
+            maxDate: 0,
 	    	onSelect: function(dateText, inst) {
 				$("input[name='something']").val(dateText);
 				$(this).hide();

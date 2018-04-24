@@ -16,14 +16,14 @@
 										<tr>
 											<div class="footer-box">
 												<div class="col-1">
-													<h2>Title comes here</h2>
-													<p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget neque quis felis malesuada maximus sit amet sit amet enim. Vivamus mollis mi sit amet aliquam elementum. </p>
-													<p>Tel: 70 200 128</p>
-													<p>E-mail: <a href="mailto:info@babyplan.dk">info@babyplan.dk</a></p>
+													<?php printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-email-footer-title']);?>
+													<?php printf(__('<p class="subtitle">%s</p>', 'ovulation-calculator'), $options['oc-email-footer-subtitle']);?>
+													<?php printf(__('<p>%s</p>', 'ovulation-calculator'), $options['oc-email-footer-tel']);?>
+													<a href="mailto:<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-footer-email']);?>"><?php printf(__('<p>E-mail: %s</p>', 'ovulation-calculator'), $options['oc-email-footer-email']);?></a>
 												
 												</div>
 												<div class="col-2">
-													<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/laby-portrait.jpg';?>" alt="lady picture" width="200">
+													<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-person-image']);?>" alt="lady picture" width="200">
 												</div>
 											</div>
 										</tr>
@@ -34,8 +34,8 @@
 											<td valign="top">
 												<table border="0" cellpadding="10" cellspacing="0" width="100%">
 													<tr>
-														<div class="footer-logo"><img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/footer_babyplan_logo.png';?>" alt="Babyplan Logo" width="100"></div>
-														<div class="copyright"><p>Copyright 2018 E-Invasion A/S, All rights reserved.</p></div>
+														<div class="footer-logo"><img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-footer-logo']);?>" alt="Babyplan Logo" width="100"></div>
+														<div class="copyright"><p><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-footer-copyright']);?></p></div>
 													</tr>
 												</table>
 											</td>
@@ -43,8 +43,7 @@
 										<tr>
 											<td>
 												<div class="footer_bottom">
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-													<p>Lorem ipsum dolor <a href="#">sit amet</a>, consectetur adipiscing elit</p>
+													<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-footer-bottom']);?>
 												</div>
 											</td>
 										</tr>

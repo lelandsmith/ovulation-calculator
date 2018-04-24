@@ -185,10 +185,10 @@
 				<tr>
 					<td align="left" valign="top">
 						<div id="template_header_logo">
-							<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/Babyplan_LogoSmall_RGB.png';?>" alt="Babyplan Logo">
+					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-logo']);?>" alt="">
 						</div>
 						<div id="template_header_image">
-							<img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/email_header-image.jpg';?>" alt="Babyplan header image">
+					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-image']);?>" alt="">
 						</div>
 						<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
 							<tr>
@@ -197,7 +197,7 @@
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
 										<tr>
 											<td id="header_wrapper">
-												<h1 style="font-family:'WOFF Juli Sans-Medium'">Thanks for using the Babyplan Ovulation Calculator</h1>
+												<?php printf(__('<h1 style="font-family:"WOFF Juli Sans-Medium"">%s</h1>', 'ovulation-calculator'), $options['oc-email-header-title']);?>
 											</td>
 										</tr>
 									</table>
@@ -208,34 +208,34 @@
 							<tr>
 								<td align="left" valign="top">
 									<div class="email-ovulation-dates">
-										<h2>Here is your 6 month ovulation calendar:</h2>
+										<?php printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-email-header-ovulation-dates']);?>
 										<div class="six-month-dates">
-											<b>Ovulation 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[0]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[5]?></b>
 											<br>
-											<b>Ovulation 2:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 2:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[6]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[11]?></b>
 											<br>
-											<b>Ovulation 3:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 3:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[12]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[17]?></b>
 											<br>
-											<b>Ovulation 4:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 4:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[18]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[23]?></b>
 											<br>
-											<b>Ovulation 5:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 5:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[24]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[29]?></b>
 											<br>
-											<b>Ovulation 6:&nbsp;&nbsp;&nbsp;&nbsp;</b>
+											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 6:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[30]?></b>
 											<b> - </b>
 											<b><?php echo $fertile_result_for_email[35]?></b>

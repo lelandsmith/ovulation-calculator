@@ -184,7 +184,7 @@ if(!empty($_POST['calculator_ok'])):
 	
     
 	//first fertile day
-	$firstdaytime=$lasttime + $_POST['days']*24*3600 - 16*24*3600;
+	$firstdaytime=$lasttime + $_POST['days']*24*3600 - 17*24*3600;
 	$firstday=date("F d, Y",$firstdaytime);
 	
 	//last fertile day

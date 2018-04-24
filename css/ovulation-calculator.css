@@ -19,7 +19,7 @@
 	-webkit-font-feature-settings: "kern" on, "liga" on, "calt" on;
 	-ms-font-feature-settings: "kern" on, "liga" on, "calt" on;
 	-o-font-feature-settings: "kern" on, "liga" on, "calt" on;
-	padding: 0 25px 25px;
+	padding: 0 0 25px;
 }
 
 #ovulationCalculatorForm{
@@ -37,7 +37,7 @@
 }
 
 .oc_heading{
-	padding: 0 25px 0;
+	padding: 0;
 }
 
 .oc_title,
@@ -371,6 +371,41 @@ td.periodDay:nth-child(2){
 }
 td.periodDay:nth-child(3){
 	opacity: 0.2;
+}
+
+@media screen and (max-width: 569px) {
+	.oc_title{font-size: 40px;}
+	.message-eng h2{
+		line-height: 1;
+	}
+	.oc_subtitle,
+	.calculator_table p{
+		font-size: 18px;
+	}
+	.email-message h2{
+		font-size: 1.425rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	
+	#ovulationCalculatorForm{
+		padding: 15px 0;
+	}
+	
+	.ll-skin-melon .ui-datepicker th{
+		font-size: 10px;
+	}
+	
+	.ll-skin-melon td .ui-state-default{
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 399px) {
+	.calculator_table p{
+		font-size: 16px;
+	}
 }
 
 

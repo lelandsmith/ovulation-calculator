@@ -17,10 +17,14 @@ $(function ($) {
 	    	onSelect: function(dateText, inst) {
 				$("input[name='something']").val(dateText);
 				$(this).hide();
+				$('#calculatorOk').prop('disabled',false);
 	    	}
 	    });
 	    
+	    $('#calculatorOk').prop('disabled',true);
+	    
 	    // Calculator Submit
+/*
 	    $('#calculatorOk').prop('disabled',true);
 	    $('#calendarInput').on('click',function() {
 		    if($('#calendarInput').val().length < 1 ){
@@ -29,6 +33,7 @@ $(function ($) {
 			    $('#calculatorOk').prop('disabled', false);
 		    }
 	    });
+*/
 	    	    
 	    // Email Send and checkbox
 	    

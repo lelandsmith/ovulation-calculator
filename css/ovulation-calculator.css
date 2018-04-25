@@ -344,10 +344,6 @@ td.fertileDay a.ui-state-default {
     background-position: right bottom;
 }
 
-
-
-
-
 /* Period Style
 ------------------------------------*/
 td.periodDay a.ui-state-default {
@@ -355,7 +351,42 @@ td.periodDay a.ui-state-default {
 	color: #fff;
 }
 
+/* Fading both Fertile and Period 
+------------------------------------*/
+.fertileDay-0,
+.periodDay-0{
+	opacity: 1;
+}
+.fertileDay-1,
+.periodDay-1{
+	opacity: 0.8;
+}
+.fertileDay-2,
+.periodDay-2{
+	opacity: 0.6;
+}
+.fertileDay-3,
+.periodDay-3{
+	opacity: 0.4;
+}
+.fertileDay-4,
+.periodDay-4{
+	opacity: 0.2;
+}
+.fertileDay-5,
+.periodDay-5{
+	opacity: 0.1;
+}
 
+.periodDay-6{
+	opacity: 1;
+}
+.periodDay-7{
+	opacity: 0.8;
+}
+.periodDay-8{
+	opacity: 0.6;
+}
 
 
 

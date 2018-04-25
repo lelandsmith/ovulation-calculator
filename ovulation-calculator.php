@@ -54,7 +54,7 @@ if (!class_exists("OvulationCalculator")){
 				'select-date'	=>	'Select date',
 				'length-cycle'	=>	'Length of your cycle',
 				'oc-submit'		=>	'Submit',
-				'oc-message'	=>	'Message below the Calendar',
+				'oc-message'	=>	'',
 				'oc-dates'	=>	'Your ovulation dates',
 				'oc-next-month-results'	=>	'Press the arrow to see next month(s) result',
 				'oc-fertile'	=>	'Fertile',
@@ -112,7 +112,7 @@ if (!class_exists("OvulationCalculator")){
 	        //wp_register_script( 'oc_jquery', '//code.jquery.com/jquery-1.12.4.js', false, false );
 	        wp_register_script( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
 	        wp_enqueue_script( 'oc_jquery_ui' );
-	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, false );
+	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, true );
 		   	wp_enqueue_script( 'oc-front' );
 	    }
 	    

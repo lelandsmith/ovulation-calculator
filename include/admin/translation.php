@@ -144,7 +144,7 @@
 		<tr valign="top">
 		<th scope="row"><?php _e("Send", "ovulationcalculator-group");?></th>
 		<td>
-			<input type="text" name="ovulationcalculator-group[oc-email-send]" value="<?php echo (!empty($options['oc-email-send'])) ?  $options['oc-email-send'] : 'Send'?>" class="regular-text"/>
+			<input type="text" name="ovulationcalculator-group[oc-email-send]" value="<?php echo (!empty($options['oc-email-send'])) ?  $options['oc-email-send'] : 'Send'?>" class="small-text"/>
 			<p class="description">Type Send in your own language</p>
 		</td>
 		</tr>

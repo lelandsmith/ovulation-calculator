@@ -95,6 +95,7 @@
 				padding-left: 15px;
 				padding-right: 15px;
 				padding-top: 15px;
+				flex:1;
 			}
 			
 			.footer-box .col-1 h2,

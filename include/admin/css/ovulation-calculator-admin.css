@@ -58,13 +58,14 @@
 #OvulationCalculator #uploadButtonHeader,
 #OvulationCalculator #uploadButton,
 #OvulationCalculator .large-text,
-#OvulationCalculator .regular-text{
+#OvulationCalculator .regular-text,
+#OvulationCalculator .small-text{
 	font-family: "WOFF2 Juli Sans-Regular";
 	background: #fff;
     border: 1px solid #ccc;
     display: block;
-    padding: 0.7em;
-    font-size: 1rem;
+    padding: 0.3em;
+    font-size: 14px;
     line-height: 1.5;
 }
 #OvulationCalculator #uploadButtonLogo,

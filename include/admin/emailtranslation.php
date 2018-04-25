@@ -183,7 +183,7 @@
 		<tr valign="top">
 		<th scope="row"><?php _e('Email sent message', 'ovulationcalculator-group');?></th>
 		<td>
-			<textarea name="ovulationcalculator-group[oc-email-sent-msg]" class="regular-text" cols="50" rows="10"><?php echo (!empty($options['oc-email-sent-msg'])) ?  $options['oc-email-sent-msg'] : 'Email is Sent'?></textarea>
+			<textarea name="ovulationcalculator-group[oc-email-sent-msg]" class="regular-text" cols="50" rows="5"><?php echo (!empty($options['oc-email-sent-msg'])) ?  $options['oc-email-sent-msg'] : 'Email is Sent'?></textarea>
 			<p class="description">Email sent message</p>
 		</td>
 		</tr>

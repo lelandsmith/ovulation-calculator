@@ -23,9 +23,7 @@
 	<?php include( plugin_dir_path( __FILE__ ) . 'email_footer.php'); 
 	
 	$Body .= ob_get_clean();
-	
-	echo $Body;
-		
+			
 	$message_sent = wp_mail($oc_email_field, $Subject, $Body, $headers);
 	if($message_sent):?>
 		<p class="oc_subtitle emailResponse"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-sent-msg'])?></p>

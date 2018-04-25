@@ -134,7 +134,6 @@ endif;?>
 				$('#datepicker').datepicker({
 					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 					firstDay: 1, // Monday
-					navigationAsDateFormat: true,
 					 beforeShowDay: function (date) {
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
@@ -147,10 +146,28 @@ endif;?>
 			            else {
 			                return [false, '', ''];
 			            }
-			            
-			            
 			        },
-				});
+				});	
+				
+				// Days fading
+				setTimeout(function() {
+					$( "td.periodDay:eq( 0 )" ).css( "opacity", "1" );
+					$( "td.periodDay:eq( 1 )" ).css( "opacity", "0.8" );
+					$( "td.periodDay:eq( 2 )" ).css( "opacity", "0.6" );
+					$( "td.periodDay:eq( 3 )" ).css( "opacity", "0.4" );
+					$( "td.periodDay:eq( 4 )" ).css( "opacity", "0.2" );
+					$( "td.periodDay:eq( 5 )" ).css( "opacity", "0.1" );
+					
+					$( "td.fertileDay:eq( 0 )" ).css( "opacity", "1" );
+					$( "td.fertileDay:eq( 1 )" ).css( "opacity", "0.8" );
+					$( "td.fertileDay:eq( 2 )" ).css( "opacity", "0.6" );
+					$( "td.fertileDay:eq( 3 )" ).css( "opacity", "0.4" );
+					$( "td.fertileDay:eq( 4 )" ).css( "opacity", "0.2" );
+					$( "td.fertileDay:eq( 5 )" ).css( "opacity", "0.1" );
+				
+				}, 500);
+				
+											
 			});
 		});
 		</script>	
@@ -223,7 +240,7 @@ if(!empty($_POST['calculator_ok'])):
 			</div>
 			<form method="post" id="ovulationCalculatorEmail" name="emailSubmitForm" autocomplete="on">
 				<div class="email-box">
-				<input type="email" name="oc_email" id="ocEmail" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-enter-email']);?>"/>
+				<input type="email" name="oc_email" id="ocEmail" placeholder="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-enter-email']);?>"/>
 				<?php if(!empty($options['oc-download-message'])):
 					printf(__('<p>%s</p>', 'ovulation-calculator'), $options['oc-download-message']);
 				endif;?>
@@ -249,7 +266,7 @@ if(!empty($_POST['calculator_ok'])):
 			endif?>
 			<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
 			<?php if(!empty($options['select-date'])):?>
-			<input type="text" name="something" placeholder="<?php printf(__('%s', 'ovulation-calculator'), $options['select-date']);?>..." value="<?php printf(__('%s', 'ovulation-calculator'), $options['select-date'])?>..." id="calendarInput"/>
+			<input type="text" name="something" placeholder="<?php printf(__('%s', 'ovulation-calculator'), $options['select-date']);?>..." id="calendarInput" readonly/>
 			<?php endif?>
 			<div id="calendar" class="ll-skin-melon"></div>
 			

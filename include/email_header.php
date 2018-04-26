@@ -198,7 +198,7 @@
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
 										<tr>
 											<td id="header_wrapper" style="font-family:'WOFF Juli Sans-Medium';">
-												<?php printf(__('<h1 style="font-size:35px;margin:0;padding-top:20px;padding-bottom:20px;color:#9E8977;text-align:center;line-height:1.25;">%s</h1>', 'ovulation-calculator'), $options['oc-email-header-title']);?>
+												<?php printf(__('<h1 style="font-size:35px;margin:0;padding-top:20px;padding-bottom:0;color:#9E8977;text-align:center;line-height:1.25;">%s</h1>', 'ovulation-calculator'), $options['oc-email-header-title']);?>
 											</td>
 										</tr>
 									</table>

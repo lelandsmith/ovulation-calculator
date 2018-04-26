@@ -10,7 +10,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td align="center" valign="top" style="background-color:#9d8a78;padding:0 0 2rem;">
+								<td align="center" valign="top" style="background-color:#9d8a78;">
 									<!-- Footer -->
 									<table border="0" cellpadding="10" cellspacing="0" width="600" id="template_footer">
 										<tr>
@@ -28,7 +28,7 @@
 											</div>
 										</tr>
 										<tr>
-											<td valign="top"><hr></td>
+											<td valign="top"><hr style="border-bottom: 1px solid #ccc;"></td>
 										</tr>
 										<tr>
 											<td valign="top">

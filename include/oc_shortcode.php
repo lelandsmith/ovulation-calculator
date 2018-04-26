@@ -284,11 +284,5 @@ if(!empty($_POST['calculator_ok'])):
 				<?php endif?>
 			</div>
 		</form>
-		
-		<div class="message-eng">
-			<?php if(!empty($options['oc-message'])):
-				printf(__('%s', 'ovulation-calculator'), $options['oc-message']);
-			endif?>
-		</div>
 	</div>
 <?php endif;?>

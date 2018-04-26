@@ -6,8 +6,9 @@
 		
 		<style type="text/css">
 			@media screen {
-			@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Regular.woff'?>'); }
-			@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Medium.woff'?>'); }
+				@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Regular.woff'?>'); }
+				@font-face { font-family: 'WOFF Juli Sans-Medium'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Medium.woff'?>'); }
+			}
 			
 			/* CLIENT-SPECIFIC STYLES */
 		    body, table, td, a{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
@@ -177,7 +178,6 @@
 				vertical-align: middle;
 				float: right;
 			}
-		}
 		</style>
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -186,10 +186,10 @@
 				<tr>
 					<td align="left" valign="top">
 						<div id="template_header_logo">
-					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-logo']);?>" alt="">
+					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-logo']);?>" alt="" width="250" height="44">
 						</div>
 						<div id="template_header_image">
-					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-image']);?>" alt="">
+					<img src="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-image']);?>" alt="" width="600">
 						</div>
 						<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
 							<tr>
@@ -197,8 +197,8 @@
 									<!-- Header -->
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
 										<tr>
-											<td id="header_wrapper">
-												<?php printf(__('<h1 style="font-family:"WOFF Juli Sans-Medium"">%s</h1>', 'ovulation-calculator'), $options['oc-email-header-title']);?>
+											<td id="header_wrapper" style="font-family:'WOFF Juli Sans-Medium';">
+												<?php printf(__('<h1 style="font-size:35px;margin:0;padding-top:20px;padding-bottom:20px;color:#9E8977;text-align:center;line-height:1.25;">%s</h1>', 'ovulation-calculator'), $options['oc-email-header-title']);?>
 											</td>
 										</tr>
 									</table>
@@ -209,8 +209,8 @@
 							<tr>
 								<td align="left" valign="top">
 									<div class="email-ovulation-dates">
-										<?php printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-email-header-ovulation-dates']);?>
-										<div class="six-month-dates">
+										<?php printf(__('<h2 style="padding-bottom:20px;padding-left:50px;font-weight:normal;margin-bottom:0;">%s</h2>', 'ovulation-calculator'), $options['oc-email-header-ovulation-dates']);?>
+										<div class="six-month-dates" style="padding-left: 80px;">
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
 											<b><?php echo $fertile_result_for_email[0]?></b>
 											<b> - </b>

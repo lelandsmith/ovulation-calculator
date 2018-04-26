@@ -62,14 +62,6 @@
 		</tr>
 		
 		<tr valign="top">
-		<th scope="row"><?php _e('Message below the Calendar', 'ovulationcalculator-group');?></th>
-		<td>
-			<textarea name="ovulationcalculator-group[oc-message]" class="large-text" rows="10" cols="50"><?php echo (!empty($options['oc-message'])) ?  $options['oc-message'] : ''?></textarea>
-			<p class="description">Message below the Calendar (HTML code supports)</p>
-		</td>
-		</tr>
-		
-		<tr valign="top">
 		<th scope="row"><?php _e('Your ovulation dates', 'ovulationcalculator-group');?></th>
 		<td>
 			<input type="text" name="ovulationcalculator-group[oc-dates]" value="<?php echo (!empty($options['oc-dates'])) ?  $options['oc-dates'] : 'Your ovulation dates'?>" class="regular-text"/>

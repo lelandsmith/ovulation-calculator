@@ -8,14 +8,14 @@
     include( plugin_dir_path( __FILE__ ) . 'email_header.php'); 
 	
 	$Body = "";?>
-	
-	<div class="download-ebook">
+		
+	<div class="download-ebook" style="padding-bottom:20px;">
 		<?php if(!empty($options['oc-email-guide'])):
-			printf(__('<h2>%s</h2>', 'ovulation-calculator'), $options['oc-email-guide']);
+			printf(__('<h2 style="padding-bottom:20px;padding-top:0;font-weight:normal;text-align:left;padding-left:30px;">%s</h2>', 'ovulation-calculator'), $options['oc-email-guide']);
 		endif;?>
-			<div class="download-btn-parent">
-				<div class="download-btn">	
-					<a href="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download-url'])?>" id="downloadEbook"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download'])?> <img id="rightArrow" src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/right.png';?>"></a>
+			<div class="download-btn-parent" style="position:relative;">
+				<div class="download-btn" style="text-align:center;padding:0;position:relative;">	
+					<a href="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download-url'])?>" id="downloadEbook" style="width:100%;border-radius:5px;background-color:#a8d1af;color:#fff;font-family:'WOFF2 Juli Sans-Regular';font-size:16px;padding-top:10px;padding-bottom:10px;border:0;box-shadow:none;cursor:pointer;display:inline-block;line-height:2;text-shadow:none;text-decoration:none;"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-download'])?> <img style="vertical-align:middle;float:right;" id="rightArrow" src="<?php echo plugin_dir_url( dirname( __FILE__ ) ) . 'include/img/right.png';?>"></a>
 				</div>
 			</div>
 	</div>

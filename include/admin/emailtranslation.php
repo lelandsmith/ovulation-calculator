@@ -8,7 +8,7 @@
 		<td>
 			<input type="text" name="ovulationcalculator-group[oc-email-logo]" value="<?php echo (!empty($options['oc-email-logo'])) ?  $options['oc-email-logo'] : 'E-mail Logo'?>" id="imageURL" class="regular-text"/>
 			<input id="uploadButton" type="button" class="button" value="Upload Logo" />
-			<p class="description clearfix">Recommended maximum width size is 600 pixels.</p>
+			<p class="description clearfix">Recommended size is 250 by 44 pixels.</p>
 		</td>
 		</tr>
 		<?php if(!empty($options['oc-email-logo'])):?>
@@ -148,7 +148,7 @@
 		<td>
 			<input type="text" name="ovulationcalculator-group[oc-email-footer-logo]" value="<?php echo (!empty($options['oc-email-footer-logo'])) ?  $options['oc-email-footer-logo'] : 'Footer Logo'?>" id="imageURLLogo" class="regular-text"/>
 			<input id="uploadButtonLogo" type="button" class="button" value="Upload Footer Logo" />
-			<p class="description clearfix">Recommended maximum width size is 100 pixels.</p>
+			<p class="description clearfix">Recommended maximum size is 150 by 26 pixels.</p>
 		</td>
 		</tr>
 		<?php if(!empty($options['oc-email-footer-logo'])):?>

@@ -54,7 +54,6 @@ if (!class_exists("OvulationCalculator")){
 				'select-date'	=>	'Select date',
 				'length-cycle'	=>	'Length of your cycle',
 				'oc-submit'		=>	'Submit',
-				'oc-message'	=>	'',
 				'oc-dates'	=>	'Your ovulation dates',
 				'oc-next-month-results'	=>	'Press the arrow to see next month(s) result',
 				'oc-fertile'	=>	'Fertile',

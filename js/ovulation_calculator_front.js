@@ -43,16 +43,13 @@ $(function ($) {
 		$('.ui-datepicker-next, .ui-datepicker-prev').live('click', function(){
 			
 			setTimeout(function() {
-				$('.periodDay').each(function (i) {
-					$(this).addClass('periodDay-' + i);
-				});
-				
+				//$('.periodDay').each(function (i) {
+				//	$(this).addClass('periodDay-' + i);
+				//});
 				$('.fertileDay').each(function (x) {
 					$(this).addClass('fertileDay-' + x);
 				});
-			
 			}, 500);
-			
 			//console.log( $( this ).text() );
 		});
 		

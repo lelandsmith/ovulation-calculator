@@ -61,17 +61,17 @@ endif;?>
 
 		$dates_period = array();
 		
-		
+		// Calculate Fertitle days 6
 		for($i = 0; $i<=5; $i++){
 			array_push($dates,date('F d, Y', strtotime("+$i day", $start)));
 			
-			array_push($dates_period,date('F d, Y', strtotime("+$i day", $selected_period_d)));
+				//array_push($dates_period,date('F d, Y', strtotime("+$i day", $selected_period_d)));
 			
 			//echo $dates[$i];
 			//echo '<br>';
 			$new_format_date = date("d/m/Y", strtotime($dates[$i]));
 			
-			$new_format_period_date = date("d/m/Y", strtotime($dates_period[$i]));
+				//$new_format_period_date = date("d/m/Y", strtotime($dates_period[$i]));
 			
 			//echo $dates_period[$i];
 			//echo '<br>';
@@ -89,16 +89,21 @@ endif;?>
 		
 		$firstday = $next_fertile_day;
 		
+		// Calculate period 5 days
+		for($x = 0; $x<5; $x++){
+			array_push($dates_period,date('F d, Y', strtotime("+$x day", $selected_period_d)));
+			$new_format_period_date = date("d/m/Y", strtotime($dates_period[$x]));
 		
-		
-		$add_period_days = $_POST['days']-5; // minus 4 from selected cycle
-		$last_period_day = $dates_period[5];
+		}
+		$add_period_days = $_POST['days']-4; // minus 4 from selected cycle
+		$last_period_day = $dates_period[4];
 		$next_period_day = date('F d, Y',strtotime($last_period_day) + (24*3600*$add_period_days));
 		
 		array_push($keep_period_dates,$dates_period);
 		
 		$selected_period_date = $next_period_day;
 	}
+	
 	
 	//var_dump(array_reduce($keep_all_dates, 'array_merge', array()));
 	
@@ -134,34 +139,30 @@ endif;?>
 				$('#datepicker').datepicker({
 					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 					firstDay: 1, // Monday
+					//showOtherMonths: true,
+					//selectOtherMonths: true,
 					 beforeShowDay: function (date) {
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
 			            if ($.inArray(string, fertileDays) > -1) {
-			                return [true, 'fertileDay', ''];
-			            } 
-			            else if ($.inArray(string, periodDays) > -1) {
-			                return [true, 'periodDay', ''];
-			            }
-			            else {
-			                return [false, '', ''];
-			            }
+			                return [false, 'fertileDay', ''];
+			          	}else if($.inArray(string, periodDays) > -1){						  	
+			           		return [false, 'periodDay', ''];
+			           }else {
+			             return [false, '', ''];
+			           }
 			        },
 				});	
 				
 				// Days fading
 				setTimeout(function() {
-					$('.periodDay').each(function (i) {
-						$(this).addClass('periodDay-' + i);
-					});
-					
+					//$('.periodDay').each(function (i) {
+					//	$(this).addClass('periodDay-' + i);
+					//});
 					$('.fertileDay').each(function (x) {
 						$(this).addClass('fertileDay-' + x);
 					});
-				
 				}, 500);
-				
-											
 			});
 		});
 		</script>	

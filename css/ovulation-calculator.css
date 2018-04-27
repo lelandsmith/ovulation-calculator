@@ -234,8 +234,8 @@
 }
 
 .fertile a > img{
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 	vertical-align: middle;
 	-webkit-box-shadow: none!important;
 	box-shadow: none!important;
@@ -339,9 +339,10 @@ td.periodDay a.ui-state-default:hover{
 
 /* Fertile Style
 ------------------------------------*/
-td.fertileDay a.ui-state-default {
+td.fertileDay a.ui-state-default,
+td.fertileDay span.ui-state-default {
     background-color: #96d2af;
-    color: #fff;
+    color: #fff!important;
     background-image: url(images/tick.svg);
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -350,23 +351,22 @@ td.fertileDay a.ui-state-default {
 .fertileDay-0,
 .fertileDay-1,
 .fertileDay-2,
-.fertileDay-3{}
-.fertileDay-4{
-/* 	opacity: 1; */
-}
-.fertileDay-4 a{
+.fertileDay-3,
+.fertileDay-4{}
+
+.fertileDay-4 a,
+.fertileDay-4 span{
 	background-image: url(images/circle.png)!important;
 }
-.fertileDay-5{
-/* 	opacity: 0.3; */
-}
+.fertileDay-5{}
 
 
 /* Period Style
 ------------------------------------*/
-td.periodDay a.ui-state-default {
+td.periodDay a.ui-state-default,
+td.periodDay span.ui-state-default {
 	background-color: #878cb4;
-	color: #fff;
+	color: #fff!important;
 }
 
 /* Fading Period 
@@ -410,6 +410,25 @@ td.periodDay a.ui-state-default {
       -webkit-transition-delay: .5s;
       transition-delay: .5s;
 }
+
+/*
+td.periodDay-5 a.ui-state-default{
+	background-color: #f5f5f5;
+	color: #a3a3a3;
+}
+*/
+
+
+/*
+td.periodDay-5 a.ui-state-default,
+td.periodDay-6 a.ui-state-default,
+td.periodDay-7 a.ui-state-default,
+td.periodDay-8 a.ui-state-default{
+	background-color: #f5f5f5;
+	color: #a3a3a3;
+}
+*/
+/*
 .periodDay-5{
 	opacity: 0.1;
 	-moz-transition-delay: .5s;
@@ -439,6 +458,7 @@ td.periodDay a.ui-state-default {
       -webkit-transition-delay: .3s;
       transition-delay: .3s;
 }
+*/
 
 
 
@@ -459,6 +479,8 @@ td.periodDay a.ui-state-default {
 .ll-skin-melon .ui-datepicker .ui-datepicker-next span{
 	background-image: url(images/next.svg);
 	background-position: right center;
+	left: 0;
+	margin-left: 0;
 }
 .ll-skin-melon .ui-datepicker .ui-datepicker-prev span{
 	background-image: url(images/prev.svg);

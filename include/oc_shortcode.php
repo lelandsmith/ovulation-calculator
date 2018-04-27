@@ -214,13 +214,19 @@ if(!empty($_POST['calculator_ok'])):
 			
 			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
 			<div id="datepicker" class="ll-skin-melon"></div>
+			<div class="fertile" style="padding-top: 1rem;">
+				<a href="#"><img src="<?php echo plugins_url('/img/circle.png' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>
+			</div>
 			<div class="calculateagain">
 				<div class="fertile">
-				<a href="#"><img src="<?php echo plugins_url('/img/tick.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-fertile']);?></a>
+					<a href="#"><img src="<?php echo plugins_url('/img/tick.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-fertile']);?></a>
 				</div>
 				<div class="calculateagainbtn">
 					<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-change-date']);?>" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'];?><?php echo $_SERVER['REQUEST_URI']?>'">
 				</div>
+			</div>
+			<div class="fertile">
+				<a href="#"><img src="<?php echo plugins_url('/img/period.png' , __FILE__ )?>" alt="Start of new cycle">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-start-ovulation']);?></a>
 			</div>
 		</div>
 		<div class="email-area">

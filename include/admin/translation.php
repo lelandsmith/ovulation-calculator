@@ -77,6 +77,15 @@
 		</td>
 		</tr>
 		
+		
+		<tr valign="top">
+		<th scope="row"><?php _e("Days of expected ovulation", "ovulationcalculator-group");?></th>
+		<td>
+			<input type="text" name="ovulationcalculator-group[oc-expected-ovulation]" value="<?php echo (!empty($options['oc-expected-ovulation'])) ?  $options['oc-expected-ovulation'] : 'Days of expected ovulation'?>" class="regular-text"/>
+			<p class="description">Days of expected ovulation</p>
+		</td>
+		</tr>
+		
 		<tr valign="top">
 		<th scope="row"><?php _e("Fertile", "ovulationcalculator-group");?></th>
 		<td>
@@ -84,6 +93,15 @@
 			<p class="description">Fertile</p>
 		</td>
 		</tr>
+		
+		<tr valign="top">
+		<th scope="row"><?php _e("Start of new cycle", "ovulationcalculator-group");?></th>
+		<td>
+			<input type="text" name="ovulationcalculator-group[oc-start-ovulation]" value="<?php echo (!empty($options['oc-start-ovulation'])) ?  $options['oc-start-ovulation'] : 'Start of new cycle'?>" class="regular-text"/>
+			<p class="description">Start of new cycle</p>
+		</td>
+		</tr>
+		
 		
 		<tr valign="top">
 		<th scope="row"><?php _e("Change date", "ovulationcalculator-group");?></th>

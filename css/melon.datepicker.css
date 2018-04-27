@@ -20,6 +20,7 @@
 	background: transparent;
 	font-weight: normal;
 	font-size: 15px;
+	padding: 0.2em 0 1em;
 }
 
 .ll-skin-melon .ui-datepicker-header .ui-state-hover {

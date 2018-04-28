@@ -348,17 +348,29 @@ td.fertileDay span.ui-state-default {
     background-position: right bottom;
 }
 
-.fertileDay-0,
-.fertileDay-1,
-.fertileDay-2,
-.fertileDay-3,
-.fertileDay-4{}
+.fertileDay-0{
+	opacity: 0.59!important;
+}
+.fertileDay-1{
+	opacity: 0.69!important;
+}
+.fertileDay-2{
+	opacity: 0.79!important;
+}
+.fertileDay-3{
+	opacity: 0.89!important;
+}
 
+.fertileDay-4,
 .fertileDay-4 a,
 .fertileDay-4 span{
-	background-image: url(images/circle.png)!important;
+	background-image: url(images/filled-circle.svg)!important;
+	opacity: 1!important;
+	background-color: #6daf89!important;
 }
-.fertileDay-5{}
+.fertileDay-5{
+	opacity: 0.79!important;
+}
 
 
 /* Period Style
@@ -487,7 +499,10 @@ td.periodDay-8 a.ui-state-default{
 	background-position: left center;
 }
 
-
+.ui-state-disabled, 
+.ui-widget-content .ui-state-disabled{
+	opacity: 1;	
+}
 
 @media screen and (max-width: 414px) {
 	.oc_title{

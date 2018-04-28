@@ -136,11 +136,12 @@ endif;?>
 				
 				var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
 				
+				
 				$('#datepicker').datepicker({
 					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 					firstDay: 1, // Monday
-					//showOtherMonths: true,
-					//selectOtherMonths: true,
+					showOtherMonths: true,
+					selectOtherMonths: true,
 					 beforeShowDay: function (date) {
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
@@ -150,8 +151,8 @@ endif;?>
 			           		return [false, 'periodDay', ''];
 			           }else {
 			             return [false, '', ''];
-			           }
-			        },
+			           }			           
+			        }
 				});	
 				
 				// Days fading
@@ -162,7 +163,7 @@ endif;?>
 					$('.fertileDay').each(function (x) {
 						$(this).addClass('fertileDay-' + x);
 					});
-				}, 500);
+				}, 500);				
 			});
 		});
 		</script>	
@@ -216,7 +217,7 @@ if(!empty($_POST['calculator_ok'])):
 			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
 			<div id="datepicker" class="ll-skin-melon"></div>
 			<div class="fertile" style="padding-top: 1rem;">
-				<a href="#"><img src="<?php echo plugins_url('/img/circle.png' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>
+				<a href="#"><img src="<?php echo plugins_url('/img/filled-circle.svg' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>
 			</div>
 			<div class="calculateagain">
 				<div class="fertile">

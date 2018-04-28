@@ -104,7 +104,7 @@
 }
 
 .ll-skin-melon .ui-state-disabled  {
-	opacity: 1;
+/* 	opacity: 1!important; */
 }
 
 .ll-skin-melon .ui-state-disabled .ui-state-default {

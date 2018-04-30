@@ -138,7 +138,7 @@ if (!class_exists("OvulationCalculator")){
 			
 		function show_navigation(){
 			$tabs = array(
-	        	'first'   => __( 'General', 'ovulation-calculator' ), 
+	        	//'first'   => __( 'General', 'ovulation-calculator' ), 
 				'second'  => __( 'Calendar Translation', 'ovulation-calculator' ),
 				'third'  => __( 'Email Template Translation', 'ovulation-calculator' ),
 			);
@@ -159,9 +159,9 @@ if (!class_exists("OvulationCalculator")){
 			   	<?php settings_errors(); ?>
 			   	<?php $options = get_option('ovulationcalculator-group'); ?>
 			   	
-			   	<div id="first"> 
-				   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/general.php');?>
-				</div>
+<!-- 			   	<div id="first"> --> 
+				   <?php //include( plugin_dir_path( __FILE__ ) . 'include/admin/general.php');?>
+<!-- 				</div> -->
 				<div id="second">
 					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/translation.php');?>
 				</div>

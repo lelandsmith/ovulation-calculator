@@ -61,36 +61,32 @@ endif;?>
 
 		$dates_period = array();
 		
+		if($_POST['days'] == 20):
+			$count = 3;
+		elseif($_POST['days'] == 21):
+			$count = 4;
+		else:
+			$count = 5;
+		endif;
+		
 		// Calculate Fertitle days 6
-		for($i = 0; $i<=5; $i++){
+		for($i = 0; $i<=$count; $i++){
 			array_push($dates,date('F d, Y', strtotime("+$i day", $start)));
-			
-				//array_push($dates_period,date('F d, Y', strtotime("+$i day", $selected_period_d)));
-			
-			//echo $dates[$i];
-			//echo '<br>';
 			$new_format_date = date("d/m/Y", strtotime($dates[$i]));
-			
-				//$new_format_period_date = date("d/m/Y", strtotime($dates_period[$i]));
-			
-			//echo $dates_period[$i];
-			//echo '<br>';
-			
-			//echo $new_format_date;
-			//echo '<br>';
 		}
 		
-		//echo '<br>';
-		$add_days = $_POST['days']-5; // minus 5 from selected cycle 
-		$last_fertile_day = $dates[5];
+		$add_days = $_POST['days']-$count; // minus 5 from selected cycle 
+		$last_fertile_day = $dates[$count];
 		$next_fertile_day = date('F d, Y',strtotime($last_fertile_day) + (24*3600*$add_days));
 		
 		array_push($keep_all_dates,$dates);
 		
 		$firstday = $next_fertile_day;
 		
+		
+		
 		// Calculate period 5 days
-		for($x = 0; $x<5; $x++){
+		for($x = 0; $x<=4; $x++){
 			array_push($dates_period,date('F d, Y', strtotime("+$x day", $selected_period_d)));
 			$new_format_period_date = date("d/m/Y", strtotime($dates_period[$x]));
 		
@@ -137,33 +133,26 @@ endif;?>
 				var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
 				
 				
+				
 				$('#datepicker').datepicker({
 					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
 					firstDay: 1, // Monday
 					showOtherMonths: true,
 					selectOtherMonths: true,
-					 beforeShowDay: function (date) {
+					beforeShowDay: function (date) {
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
 			            if ($.inArray(string, fertileDays) > -1) {
-			                return [false, 'fertileDay', ''];
-			          	}else if($.inArray(string, periodDays) > -1){						  	
-			           		return [false, 'periodDay', ''];
+			               return [true, 'fertileDay', ''];
+			           }else if($.inArray(string, periodDays) > -1){	
+			           		return [true, 'periodDay', ''];
 			           }else {
 			             return [false, '', ''];
-			           }			           
+			           }	
 			        }
 				});	
 				
-				// Days fading
-				setTimeout(function() {
-					//$('.periodDay').each(function (i) {
-					//	$(this).addClass('periodDay-' + i);
-					//});
-					$('.fertileDay').each(function (x) {
-						$(this).addClass('fertileDay-' + x);
-					});
-				}, 500);				
+				
 			});
 		});
 		</script>	
@@ -197,8 +186,15 @@ if(!empty($_POST['calculator_ok'])):
 	
     
 	//first fertile day
-	$firstdaytime=$lasttime + $_POST['days']*24*3600 - 17*24*3600;
-	$firstday=date("F d, Y",$firstdaytime);
+	if($_POST['days'] == 20):
+		$firstdaytime = $lasttime + $_POST['days']*24*3600 - 15*24*3600;
+	elseif($_POST['days'] == 21):
+		$firstdaytime = $lasttime + $_POST['days']*24*3600 - 16*24*3600;
+	else:
+		$firstdaytime = $lasttime + $_POST['days']*24*3600 - 17*24*3600;
+	endif;
+	
+	$firstday = date("F d, Y",$firstdaytime);
 	
 	//last fertile day
 	$lastdaytime=$lasttime + $_POST['days']*24*3600 - 12*24*3600;
@@ -215,6 +211,48 @@ if(!empty($_POST['calculator_ok'])):
 			endif;?>
 			
 			<?php check_available_date($firstday, $next_period, $selected_period_date);?>
+			
+			<?php if($_POST['days'] == 20):?>
+				<style>
+					td.fertileDay-2 span,
+					td.fertileDay-2 a.ui-state-default,
+					td.fertileDay-6 span,
+					td.fertileDay-6 a.ui-state-default{
+						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
+						opacity: 1!important;
+						filter:Alpha(Opacity=100)!important;
+						background-color: #6daf89!important;
+					}
+					td.fertileDay-4 span,
+					td.fertileDay-4,
+					td.fertileDay-4 a.ui-state-default{
+						background-image: none!important;
+						opacity: 0.89!important;
+						filter:Alpha(Opacity=89)!important;
+					}
+				</style>	
+			<?php elseif($_POST['days'] == 21):?>
+				<style>
+					td.fertileDay-3 span,
+					td.fertileDay-3 a.ui-state-default,
+					td.fertileDay-3 span,
+					td.fertileDay-8 a.ui-state-default{
+						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
+						opacity: 1!important;
+						filter:Alpha(Opacity=100)!important;
+						background-color: #6daf89!important;
+					}
+					td.fertileDay-4 span,
+					td.fertileDay-4,
+					td.fertileDay-4 a.ui-state-default{
+						background-image: none!important;
+						opacity: 0.89!important;
+						filter:Alpha(Opacity=89)!important;
+					}
+				</style>
+			<?php endif;?>
+			
+			
 			<div id="datepicker" class="ll-skin-melon"></div>
 			<div class="fertile" style="padding-top: 1rem;">
 				<a href="#"><img src="<?php echo plugins_url('/img/filled-circle.svg' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>

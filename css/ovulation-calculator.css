@@ -350,26 +350,36 @@ td.fertileDay span.ui-state-default {
 
 .fertileDay-0{
 	opacity: 0.59!important;
+	filter:Alpha(Opacity=59)!important;
 }
 .fertileDay-1{
 	opacity: 0.69!important;
+	filter:Alpha(Opacity=69)!important;
 }
 .fertileDay-2{
 	opacity: 0.79!important;
+	filter:Alpha(Opacity=79)!important;
 }
 .fertileDay-3{
 	opacity: 0.89!important;
+	filter:Alpha(Opacity=89)!important;
 }
 
 .fertileDay-4,
 .fertileDay-4 a,
-.fertileDay-4 span{
+.fertileDay-4 span,
+
+.fertileDay-10,
+.fertileDay-10 a,
+.fertileDay-10 span{
 	background-image: url(images/filled-circle.svg)!important;
 	opacity: 1!important;
+	filter:Alpha(Opacity=100)!important;
 	background-color: #6daf89!important;
 }
 .fertileDay-5{
 	opacity: 0.79!important;
+	filter:Alpha(Opacity=79)!important;
 }
 
 
@@ -502,6 +512,7 @@ td.periodDay-8 a.ui-state-default{
 .ui-state-disabled, 
 .ui-widget-content .ui-state-disabled{
 	opacity: 1;	
+	filter:Alpha(Opacity=100);
 }
 
 @media screen and (max-width: 414px) {

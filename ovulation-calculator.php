@@ -47,6 +47,8 @@ if (!class_exists("OvulationCalculator")){
 		function register_settings(){
         	# set defaults
 			$options = array(
+				'oc-mailchimp-api'	=>	'70b4872ba9f1a1cc3731c62a791a63e6-us16',
+				'oc-mailchimp-list-id'	=>	'db51e935cd',
 				'ovulation-calculator'	=>	'Ovulation Calculator',
 				'pregnancy-greatest'	=>	'When are your chances of pregnancy greatest?',
 				'calculate-ovulation'	=> 'Calculate ovulation',
@@ -138,7 +140,7 @@ if (!class_exists("OvulationCalculator")){
 			
 		function show_navigation(){
 			$tabs = array(
-	        	//'first'   => __( 'General', 'ovulation-calculator' ), 
+	        	'first'   => __( 'MailChimp', 'ovulation-calculator' ), 
 				'second'  => __( 'Calendar Translation', 'ovulation-calculator' ),
 				'third'  => __( 'Email Template Translation', 'ovulation-calculator' ),
 			);
@@ -159,9 +161,9 @@ if (!class_exists("OvulationCalculator")){
 			   	<?php settings_errors(); ?>
 			   	<?php $options = get_option('ovulationcalculator-group'); ?>
 			   	
-<!-- 			   	<div id="first"> --> 
-				   <?php //include( plugin_dir_path( __FILE__ ) . 'include/admin/general.php');?>
-<!-- 				</div> -->
+			   	<div id="first"> 
+				   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/mailchimp.php');?>
+				</div>
 				<div id="second">
 					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/translation.php');?>
 				</div>

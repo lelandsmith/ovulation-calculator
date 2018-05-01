@@ -1,11 +1,100 @@
 <?php 
 // Get option values from Database. Option Value name is : ovulationcalculator-group
 $options = get_option('ovulationcalculator-group');
+
+
+function syncMailchimp($data) {
 	
+	$options = get_option('ovulationcalculator-group');
+	
+    if(!empty($options['oc-mailchimp-api'])):
+    	$apiKey = $options['oc-mailchimp-api'];
+    endif;
+    
+    if(!empty($options['oc-mailchimp-list-id'])):
+    	$listId = $options['oc-mailchimp-list-id'];
+    endif;
+
+    $memberId = md5(strtolower($data['email']));
+    $dataCenter = substr($apiKey,strpos($apiKey,'-')+1);
+    $url = 'https://' . $dataCenter . '.api.mailchimp.com/3.0/lists/' . $listId . '/members/' . $memberId;
+
+    $json = json_encode([
+        'email_address' => $data['email'],
+        'status'        => $data['status'], // "subscribed","unsubscribed","cleaned","pending"
+        'merge_fields'  => [
+            'MMERGE5' => $data['newsletter']
+        ]
+    ]);
+
+    $ch = curl_init($url);
+
+    curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $apiKey);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $json);                                                                                                                 
+
+	curl_exec($ch);
+    
+    //$responseData = json_decode($response, TRUE);
+	// Print the date from the response
+	//echo '<pre>';
+	//print_r($responseData);  
+	//echo '</pre>'; 
+    
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+    curl_close($ch);
+    
+    if ($httpCode == 200) {
+	    printf(__('<p class="oc_subtitle mailchimpResponse">%s</p>', 'ovulation-calculator'), 'You have successfully subscribed.');
+	    $GLOBALS['message_sent'] = 1;
+	}else{
+		switch ($httpCode) {
+			case 214:
+				printf(__('<p class="oc_subtitle mailchimpResponse">%s</p>', 'ovulation-calculator'), 'You are already subscribed.');
+				$GLOBALS['message_sent'] = 0;
+				break;
+			case 400:
+				printf(__('<p class="oc_subtitle mailchimpResponse">%s</p>', 'ovulation-calculator'), 'MailChimp could not understand the request due to invalid syntax. Check your email address.');
+				$GLOBALS['message_sent'] = 0;
+				break;
+			case 401:
+				printf(__('<p class="oc_subtitle mailchimpResponse"><b>Error Code:</b> %s</p>', 'ovulation-calculator'), $httpCode);
+				printf(__('<p class="oc_subtitle mailchimpResponse">%s</p>', 'ovulation-calculator'), 'APIKeyMissing: Your request did not include an API key. <br>OR<br/> APIKeyInvalid: Your API key may be invalid, or you’ve attempted to access the wrong data center.');
+				$GLOBALS['message_sent'] = 0;
+				break;
+			default:
+				printf(__('<p class="oc_subtitle mailchimpResponse">%s</p>', 'ovulation-calculator'), 'Unexpected HTTP code: '. $httpCode.'');
+				$GLOBALS['message_sent'] = 0;
+				break;
+ 		}
+	}
+        
+    
+    
+    //return $httpCode;
+}
+
+
 if(!empty($_POST['emailsend'])):
 	
 		$oc_email_field = sanitize_email($_POST['oc_email']);
 	
+		// Starts Mailchimp integration		
+		$data = [
+		    'email'     => $oc_email_field,
+		    'status'    => 'subscribed',
+		    'newsletter'	=> '1'
+		];
+		
+		syncMailchimp($data);
+		// End Mailchimp 		
+		
+		
 		//echo $oc_email_field;
 		
 		if (isset($_POST['oc_subscribe'])) {
@@ -143,9 +232,9 @@ endif;?>
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
 			            if ($.inArray(string, fertileDays) > -1) {
-			               return [true, 'fertileDay', ''];
+			               return [false, 'fertileDay', ''];
 			           }else if($.inArray(string, periodDays) > -1){	
-			           		return [true, 'periodDay', ''];
+			           		return [false, 'periodDay', ''];
 			           }else {
 			             return [false, '', ''];
 			           }	
@@ -221,33 +310,33 @@ if(!empty($_POST['calculator_ok'])):
 						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
 						opacity: 1!important;
 						filter:Alpha(Opacity=100)!important;
-						background-color: #6daf89!important;
+						background-color: #96d2af!important;
 					}
 					td.fertileDay-4 span,
 					td.fertileDay-4,
 					td.fertileDay-4 a.ui-state-default{
-						background-image: none!important;
-						opacity: 0.89!important;
-						filter:Alpha(Opacity=89)!important;
+						background-image: url( <?php echo plugins_url('img/tick.svg', __FILE__ )?>)!important;;
+/* 						opacity: 0.89!important; */
+/* 						filter:Alpha(Opacity=89)!important; */
 					}
 				</style>	
 			<?php elseif($_POST['days'] == 21):?>
 				<style>
 					td.fertileDay-3 span,
 					td.fertileDay-3 a.ui-state-default,
-					td.fertileDay-3 span,
+					td.fertileDay-8 span,
 					td.fertileDay-8 a.ui-state-default{
 						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
 						opacity: 1!important;
 						filter:Alpha(Opacity=100)!important;
-						background-color: #6daf89!important;
+						background-color: #96d2af!important;
 					}
 					td.fertileDay-4 span,
 					td.fertileDay-4,
 					td.fertileDay-4 a.ui-state-default{
-						background-image: none!important;
-						opacity: 0.89!important;
-						filter:Alpha(Opacity=89)!important;
+						background-image: url( <?php echo plugins_url('img/tick.svg', __FILE__ )?>)!important;;
+/* 						opacity: 0.89!important; */
+/* 						filter:Alpha(Opacity=89)!important; */
 					}
 				</style>
 			<?php endif;?>

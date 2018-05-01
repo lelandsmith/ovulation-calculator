@@ -23,14 +23,18 @@
 	<?php include( plugin_dir_path( __FILE__ ) . 'email_footer.php'); 
 	
 	$Body .= ob_get_clean();
+	
+	$response_stat = $GLOBALS['message_sent'];
+	
+	if($response_stat !=0):		
+		$message_sent = wp_mail($oc_email_field, $Subject, $Body, $headers);
+		if($message_sent):?>
+			<p class="oc_subtitle emailResponse"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-sent-msg'])?></p>
+			<?php return true;
 			
-	$message_sent = wp_mail($oc_email_field, $Subject, $Body, $headers);
-	if($message_sent):?>
-		<p class="oc_subtitle emailResponse"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-sent-msg'])?></p>
-		<?php return true;
-		
-	else:?>
-		<p class="oc_subtitle emailResponse">E-mail is not sent!</p>
-		<?php return true;
+		else:?>
+			<p class="oc_subtitle emailResponse">E-mail is not sent!</p>
+			<?php return true;
+		endif;
 	endif;
 ?>

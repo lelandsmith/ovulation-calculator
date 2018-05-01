@@ -348,6 +348,7 @@ td.fertileDay span.ui-state-default {
     background-position: right bottom;
 }
 
+/*
 .fertileDay-0{
 	opacity: 0.59!important;
 	filter:Alpha(Opacity=59)!important;
@@ -364,6 +365,7 @@ td.fertileDay span.ui-state-default {
 	opacity: 0.89!important;
 	filter:Alpha(Opacity=89)!important;
 }
+*/
 
 .fertileDay-4,
 .fertileDay-4 a,
@@ -375,12 +377,14 @@ td.fertileDay span.ui-state-default {
 	background-image: url(images/filled-circle.svg)!important;
 	opacity: 1!important;
 	filter:Alpha(Opacity=100)!important;
-	background-color: #6daf89!important;
+	background-color: #96d2af!important;
 }
+/*
 .fertileDay-5{
 	opacity: 0.79!important;
 	filter:Alpha(Opacity=79)!important;
 }
+*/
 
 
 /* Period Style
@@ -394,6 +398,7 @@ td.periodDay span.ui-state-default {
 /* Fading Period 
 ------------------------------------*/
 
+/*
 .periodDay-0{
 	opacity: 1;
 	-moz-transition-delay: .1s;
@@ -432,6 +437,7 @@ td.periodDay span.ui-state-default {
       -webkit-transition-delay: .5s;
       transition-delay: .5s;
 }
+*/
 
 /*
 td.periodDay-5 a.ui-state-default{
@@ -483,12 +489,18 @@ td.periodDay-8 a.ui-state-default{
 */
 
 
-
+.mailchimpResponse,
 .emailResponse{
 	font-family: Arial, sans-serif;
 	text-align:center;
 	border-bottom:1px solid;
 	padding-bottom:1rem;
+}
+
+.mailchimpResponse{
+	border-bottom: 0;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 .ll-skin-melon .ui-datepicker .ui-datepicker-next span,

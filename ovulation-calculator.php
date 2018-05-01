@@ -47,8 +47,8 @@ if (!class_exists("OvulationCalculator")){
 		function register_settings(){
         	# set defaults
 			$options = array(
-				'oc-mailchimp-api'	=>	'70b4872ba9f1a1cc3731c62a791a63e6-us16',
-				'oc-mailchimp-list-id'	=>	'db51e935cd',
+				'oc-mailchimp-api'	=>	'',
+				'oc-mailchimp-list-id'	=>	'',
 				'ovulation-calculator'	=>	'Ovulation Calculator',
 				'pregnancy-greatest'	=>	'When are your chances of pregnancy greatest?',
 				'calculate-ovulation'	=> 'Calculate ovulation',

@@ -211,20 +211,45 @@ endif;?>
 	
 	$period_result = array_reduce($period_from_db, 'array_merge', array());
 			
+	$options = get_option('ovulationcalculator-group');
+	
 	?>
+		
+		
 		<script>
 			$ = jQuery.noConflict();
 			$(function ($) {
 			$(document).ready(function() {	  
 				
 				var fertileDays = <?php echo '["' . implode('", "', $result) . '"]' ?>;
-				
 				var periodDays = <?php echo '["' . implode('", "', $period_result) . '"]' ?>;
 				
+				var monthOne = "<?php echo $options['oc-january'] ?>";
+				var monthTwo = "<?php echo $options['oc-feb'] ?>";
+				var monthThree = "<?php echo $options['oc-mar'] ?>";
+				var monthFour = "<?php echo $options['oc-apr'] ?>";
+				var monthFive = "<?php echo $options['oc-may'] ?>";
+				var monthSix = "<?php echo $options['oc-jun'] ?>";
+				var monthSeven = "<?php echo $options['oc-jul'] ?>";
+				var monthEight = "<?php echo $options['oc-aug'] ?>";
+				var monthNine = "<?php echo $options['oc-sep'] ?>";
+				var monthTen = "<?php echo $options['oc-oct'] ?>";
+				var monthEleven = "<?php echo $options['oc-nov'] ?>";
+				var monthTweleve = "<?php echo $options['oc-dec'] ?>";
 				
-				
+				var dayOne = "<?php echo $options['oc-mon'] ?>";
+				var dayTwo = "<?php echo $options['oc-tue'] ?>";
+				var dayThree = "<?php echo $options['oc-wed'] ?>";
+				var dayFour = "<?php echo $options['oc-thu'] ?>";
+				var dayFive = "<?php echo $options['oc-fri'] ?>";
+				var daySix = "<?php echo $options['oc-sat'] ?>";
+				var daySeven = "<?php echo $options['oc-sun'] ?>";
+								
 				$('#datepicker').datepicker({
-					dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+					
+					monthNames: [ monthOne,monthTwo,monthThree,monthFour,monthFive,monthSix, monthSeven,monthEight,monthNine,monthTen,monthEleven,monthTweleve ],
+					dayNamesMin: [ daySeven,dayOne,dayTwo,dayThree,dayFour,dayFive,daySix ],
+					
 					firstDay: 1, // Monday
 					showOtherMonths: true,
 					selectOtherMonths: true,
@@ -240,7 +265,6 @@ endif;?>
 			           }	
 			        }
 				});	
-				
 				
 			});
 		});
@@ -385,6 +409,60 @@ if(!empty($_POST['calculator_ok'])):
 		</div>
 	</div>
 <?php else: //the calculator comes here ?>
+	<script>
+			
+		$ = jQuery.noConflict();
+		$(function ($) {
+			$(document).ready(function() {
+				
+				var monthOne = "<?php echo $options['oc-january'] ?>";
+				var monthTwo = "<?php echo $options['oc-feb'] ?>";
+				var monthThree = "<?php echo $options['oc-mar'] ?>";
+				var monthFour = "<?php echo $options['oc-apr'] ?>";
+				var monthFive = "<?php echo $options['oc-may'] ?>";
+				var monthSix = "<?php echo $options['oc-jun'] ?>";
+				var monthSeven = "<?php echo $options['oc-jul'] ?>";
+				var monthEight = "<?php echo $options['oc-aug'] ?>";
+				var monthNine = "<?php echo $options['oc-sep'] ?>";
+				var monthTen = "<?php echo $options['oc-oct'] ?>";
+				var monthEleven = "<?php echo $options['oc-nov'] ?>";
+				var monthTweleve = "<?php echo $options['oc-dec'] ?>";
+				
+				var dayOne = "<?php echo $options['oc-mon'] ?>";
+				var dayTwo = "<?php echo $options['oc-tue'] ?>";
+				var dayThree = "<?php echo $options['oc-wed'] ?>";
+				var dayFour = "<?php echo $options['oc-thu'] ?>";
+				var dayFive = "<?php echo $options['oc-fri'] ?>";
+				var daySix = "<?php echo $options['oc-sat'] ?>";
+				var daySeven = "<?php echo $options['oc-sun'] ?>";
+
+				
+				
+				
+				
+				$('#calendar').datepicker({	  				  			  	
+				  	monthNames: [ monthOne,monthTwo,monthThree,monthFour,monthFive,monthSix, monthSeven,monthEight,monthNine,monthTen,monthEleven,monthTweleve ],
+					dayNamesMin: [ daySeven,dayOne,dayTwo,dayThree,dayFour,dayFive,daySix ],
+				  	
+				  	firstDay: 1, // Monday
+				  	inline: true,
+				  	showOtherMonths: true,
+			    	dateFormat: "dd/mm/yy",
+		            maxDate: 0,
+			    	
+			    	onSelect: function(dateText, inst) {
+						$("input[name='something']").val(dateText);
+						$(this).hide();
+						$('#calculatorOk').prop('disabled',false);
+						$('.calculator_table i.fa.fa-calendar').css('color', '#c1c1c1');
+			    	}
+		    	});
+			});
+		});
+	</script>
+	
+	
+	
 	<div class="calculator_table">
 		<form method="post" id="ovulationCalculatorForm" autocomplete="off">
 			<?php if(!empty($options['calculate-ovulation'])):

@@ -24,6 +24,8 @@
 	
 	$Body .= ob_get_clean();
 	
+	echo $Body;
+	
 	$response_stat = $GLOBALS['message_sent'];
 	
 	if($response_stat !=0):		

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ovulation Calculator
  * Plugin URI: 
- * Description: This ovulation calculator will calculate your most fertile days.
+ * Description: This ovulation calculator will calculate your period, fertile and most ovulation dates.
  * Version: 1.0.0
  * Author: Zakir Sajib
  * Text Domain: ovulation-calculator
@@ -47,8 +47,8 @@ if (!class_exists("OvulationCalculator")){
 		function register_settings(){
         	# set defaults
 			$options = array(
-				'oc-mailchimp-api'	=>	'',
-				'oc-mailchimp-list-id'	=>	'',
+				'oc-mailchimp-api'	=>	'70b4872ba9f1a1cc3731c62a791a63e6-us16',
+				'oc-mailchimp-list-id'	=>	'db51e935cd',
 				'ovulation-calculator'	=>	'Ovulation Calculator',
 				'pregnancy-greatest'	=>	'When are your chances of pregnancy greatest?',
 				'calculate-ovulation'	=> 'Calculate ovulation',
@@ -84,7 +84,8 @@ if (!class_exists("OvulationCalculator")){
 				'oc-email-guide'	=>	'Get a copy of the Babyplan Guide to Pregnancy here:',
 				'oc-email-download'	=>	'Download e-book',
 				'oc-email-download-url'	=>	'',
-				'oc-email-sent-msg'	=>	'E-mail is Sent.'
+				'oc-email-sent-msg'	=>	'E-mail is Sent.',
+				'email-lang'	=> 'danish'
 			);
 			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
 			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
@@ -115,8 +116,21 @@ if (!class_exists("OvulationCalculator")){
 	        //wp_register_script( 'oc_jquery', '//code.jquery.com/jquery-1.12.4.js', false, false );
 	        wp_register_script( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
 	        wp_enqueue_script( 'oc_jquery_ui' );
+	        
+	        // languages
+	        //wp_register_script( 'oc-danish', plugins_url( '/include/lang/datepicker-da.js' , __FILE__ ), array('jquery'), false, true );
+	        
+	        //wp_enqueue_script( 'oc-danish' );
+	        //wp_register_script( 'oc-danish-choice', plugins_url( '/js/lang/da.js' , __FILE__ ), array('jquery'), false, true );
+	        
+	        //wp_enqueue_script( 'oc-danish-choice' );
+	        
+	        
+	        
 	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, true );
 		   	wp_enqueue_script( 'oc-front' );
+		   	
+		   	
 	    }
 	    
 	    function ovulation_calculator(){
@@ -143,6 +157,8 @@ if (!class_exists("OvulationCalculator")){
 	        	'first'   => __( 'MailChimp', 'ovulation-calculator' ), 
 				'second'  => __( 'Calendar Translation', 'ovulation-calculator' ),
 				'third'  => __( 'Email Template Translation', 'ovulation-calculator' ),
+				'fourth'  => __( 'Calendar Month Translation', 'ovulation-calculator' ),
+				'fifth'  => __( 'Calendar Days Translation', 'ovulation-calculator' ),
 			);
 		    echo '<div id="tabs">';
 			    $html = '<ul>';
@@ -169,6 +185,12 @@ if (!class_exists("OvulationCalculator")){
 				</div>
 				<div id="third">
 					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/emailtranslation.php');?>
+				</div>
+				<div id="fourth">
+					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendarmonth.php');?>
+				</div>
+				<div id="fifth">
+					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendardays.php');?>
 				</div>
 			   	
 			   	<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'ovulation-calculator') ?>" /></p>

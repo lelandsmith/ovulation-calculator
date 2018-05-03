@@ -7,15 +7,24 @@ $(function ($) {
 	  		$('#calendar').toggle();
 	  		$('.calculator_table i.fa.fa-calendar').css('color', '#a8d1af');
 		});
-		
-	  	
+			  	
+/*
 	  	$('#calendar').datepicker({	  	
-		  	dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+		  	//dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+		  			  	
+		  	monthNames: [ "Januar","Februar","Marts","April","Maj","Juni",
+	"Juli","August","September","Oktober","November","December" ],
+	monthNamesShort: [ "Jan","Feb","Mar","Apr","Maj","Jun",
+	"Jul","Aug","Sep","Okt","Nov","Dec" ],
+			dayNames: [ "Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag" ],
+			dayNamesMin: [ "Søn",mon,"Tir","Ons","Tor","Fre","Lør" ],
+		  	
 		  	firstDay: 1, // Monday
 		  	inline: true,
 		  	showOtherMonths: true,
 	    	dateFormat: "dd/mm/yy",
             maxDate: 0,
+	    	
 	    	onSelect: function(dateText, inst) {
 				$("input[name='something']").val(dateText);
 				$(this).hide();
@@ -23,6 +32,7 @@ $(function ($) {
 				$('.calculator_table i.fa.fa-calendar').css('color', '#c1c1c1');
 	    	}
 	    });
+*/
 	    
 	    $('#calculatorOk').prop('disabled',true);
 	    	    	    

@@ -4,6 +4,9 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
 		<title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
 		
+		
+
+		
 		<style type="text/css">
 			@media screen {
 				@font-face { font-family: 'WOFF Juli Sans-Regular'; src: url('<?php echo plugin_dir_url( dirname( __FILE__ ) ) .'fonts/JuliSans-Regular.woff'?>'); }
@@ -211,35 +214,99 @@
 									<div class="email-ovulation-dates">
 										<?php printf(__('<h2 style="padding-bottom:20px;padding-left:50px;font-weight:normal;margin-bottom:0;">%s</h2>', 'ovulation-calculator'), $options['oc-email-header-ovulation-dates']);?>
 										<div class="six-month-dates" style="padding-left: 80px;">
+											
+<?php 
+
+$options = get_option('ovulationcalculator-group');
+$email_lang = $options['email-lang'];
+
+echo $email_lang;
+
+if($email_lang == 'danish'):
+	$selected_email_lang = 'da_DA';
+elseif($email_lang == 'swedish'):
+	$selected_email_lang = 'sv-SE';
+elseif($email_lang == 'norwegian'):
+	$selected_email_lang = 'no-no';
+elseif($email_lang == 'finnish'):
+	$selected_email_lang = 'fi-FI';
+elseif($email_lang == 'english'):
+	$selected_email_lang = 'en-US';
+elseif($email_lang == 'estonian'):
+	$selected_email_lang = 'et';
+elseif($email_lang == 'spanish'):
+	$selected_email_lang = 'es-ES';
+endif;
+
+	// Find locale codes here: 
+	
+	// https://www.science.co.il/language/Locale-codes.php
+	// https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes
+	
+	// Danish - da_DA
+	// Swedish - sv-SE
+	// Norwegian - no-no
+	// Finnish - fi-FI
+	// English - en-US
+	// Estonian - et
+	// Spanish - es-ES
+
+
+$danish_dates = array();
+
+for ($i=0; $i<=35; $i++){																						
+	$dateparts = explode(" ",$fertile_result_for_email[$i]);
+		
+	$month= $dateparts[0];
+	$day = (int)$dateparts[1];
+	$year= (int)$dateparts[2];
+	
+	// convert month name to its number
+	$month = date('m', strtotime($month));
+	
+	$fmt = new IntlDateFormatter($selected_email_lang,
+	    IntlDateFormatter::LONG,
+	    IntlDateFormatter::NONE,'Europe/Berlin',
+	    IntlDateFormatter::GREGORIAN,"MMMM dd, yyyy");
+	
+	$format_date = mktime(0, 0, 0, $month, $day, $year);
+	
+	$danish_format_date =  $fmt->format($format_date);
+	$danish_month_capitalize = ucfirst($danish_format_date);
+		
+	array_push($danish_dates, $danish_month_capitalize);
+}
+		
+?>																				
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 1:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[0]?></b>
+											<b><?php echo $danish_dates[0];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[5]?></b>
+											<b><?php echo $danish_dates[5];?></b>
 											<br>
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 2:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[6]?></b>
+											<b><?php echo $danish_dates[6];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[11]?></b>
+											<b><?php echo $danish_dates[11];?></b>
 											<br>
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 3:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[12]?></b>
+											<b><?php echo $danish_dates[12];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[17]?></b>
+											<b><?php echo $danish_dates[17];?></b>
 											<br>
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 4:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[18]?></b>
+											<b><?php echo $danish_dates[18];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[23]?></b>
+											<b><?php echo $danish_dates[23];?></b>
 											<br>
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 5:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[24]?></b>
+											<b><?php echo $danish_dates[24];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[29]?></b>
+											<b><?php echo $danish_dates[29];?></b>
 											<br>
 											<b><?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-header-ovulation-text']);?> 6:&nbsp;&nbsp;&nbsp;&nbsp;</b>
-											<b><?php echo $fertile_result_for_email[30]?></b>
+											<b><?php echo $danish_dates[30];?></b>
 											<b> - </b>
-											<b><?php echo $fertile_result_for_email[35]?></b>
+											<b><?php echo $danish_dates[35];?></b>
 											<br>
 										</div>
 									</div>

@@ -224,18 +224,25 @@ echo $email_lang;
 
 if($email_lang == 'danish'):
 	$selected_email_lang = 'da_DA';
+	$dates_format = 'dd. MMMM yyyy';
 elseif($email_lang == 'swedish'):
 	$selected_email_lang = 'sv-SE';
+	$dates_format = 'yyyy-MM-dd';
 elseif($email_lang == 'norwegian'):
 	$selected_email_lang = 'no-no';
+	$dates_format = 'dd.MM.yyyy';
 elseif($email_lang == 'finnish'):
 	$selected_email_lang = 'fi-FI';
+	$dates_format = 'dd.MM.yyyy';
 elseif($email_lang == 'english'):
 	$selected_email_lang = 'en-US';
+	$dates_format = 'MM/dd/yyyy';
 elseif($email_lang == 'estonian'):
 	$selected_email_lang = 'et';
+	$dates_format = 'dd.MM.yyyy';
 elseif($email_lang == 'spanish'):
 	$selected_email_lang = 'es-ES';
+	$dates_format = 'dd/MM/yyyy';
 endif;
 
 	// Find locale codes here: 
@@ -267,7 +274,7 @@ for ($i=0; $i<=35; $i++){
 	$fmt = new IntlDateFormatter($selected_email_lang,
 	    IntlDateFormatter::LONG,
 	    IntlDateFormatter::NONE,'Europe/Berlin',
-	    IntlDateFormatter::GREGORIAN,"MMMM dd, yyyy");
+	    IntlDateFormatter::GREGORIAN,$dates_format);
 	
 	$format_date = mktime(0, 0, 0, $month, $day, $year);
 	

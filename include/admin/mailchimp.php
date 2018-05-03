@@ -1,5 +1,5 @@
 <h1 class="screen-reader-text">MailChimp</h1>
-<h2>Enter MailChimp's few details so that we can register email to MailChimp's lists.</h2>
+<h3>Enter MailChimp's few details so that we can register email to MailChimp's lists.</h3><hr>
 
 <table class="form-table">
 	<tbody>
@@ -19,10 +19,6 @@
 			<p class="description">Enter MailChimp Unique ID for List</p>
 			<p class="help"><a href="https://docs.betheme.me/article/33-getting-mailchimp-api-key-and-list-id" target="_blank">How to find out Unique ID for List</a> </p>
 		</td>
-		</tr>
-
-		
-		
-		
+		</tr>		
 	</tbody>
 </table>

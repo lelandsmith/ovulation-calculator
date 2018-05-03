@@ -1,5 +1,4 @@
 <h1 class="screen-reader-text">Calendar Language Translation</h1>
-<h2>This is where you translate Calendar.</h2>
 <h3>General Calendar Translation</h3><hr>
 <table class="form-table">
 	<tbody>

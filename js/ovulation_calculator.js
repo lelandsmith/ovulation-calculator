@@ -1,4 +1,6 @@
 $ = jQuery.noConflict();
 $(function ($) {	
-	$('#tabs').tabs();
+	[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+		new CBPFWTabs( el );
+	});
 });

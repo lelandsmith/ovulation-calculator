@@ -93,14 +93,25 @@ if (!class_exists("OvulationCalculator")){
         
         // Admin Style and JS
         function admin_ovulation_calculator_enqueue(){
-	       	 wp_enqueue_style( 'oc_jquery_ui_admin', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css' );
-	       	 //wp_register_script( 'oc_jquery_ui_admin', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
-	        //wp_enqueue_script( 'oc_jquery_ui_admin' );
-	       	 wp_enqueue_script('jquery-ui-tabs');
-		   	 wp_register_script('oc-admin-tab', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, false );
-		   	 wp_enqueue_script('oc-admin-tab');
+	       	 
+	       	 wp_register_style( 'oc-admin-custom', plugins_url( '/include/admin/css/ovulation-calculator-admin.css' , __FILE__ ) );
+	       	 wp_enqueue_style( 'oc-admin-custom' );
+	       	 
+	       	 // Tabs
+	       	 wp_register_style( 'oc-admin-tab', plugins_url( '/include/admin/css/tabs.css' , __FILE__ ) );
+	       	 wp_enqueue_style( 'oc-admin-tab' );
+	       	 wp_register_style( 'oc-admin-tabstyle', plugins_url( '/include/admin/css/tabstyles.css' , __FILE__ ) );
+	       	 wp_enqueue_style( 'oc-admin-tabstyle' );
+	       	 
+		   	 wp_register_script('oc-modernizr.custom', plugins_url( '/include/admin/js/modernizr.custom.js' , __FILE__ ), array('jquery'), false, false );
+		   	 wp_enqueue_script('oc-modernizr.custom');	
 		   	 
-		   	 wp_enqueue_style( 'oc-admin-custom', plugins_url( '/include/admin/css/ovulation-calculator-admin.css' , __FILE__ ) );
+		   	 wp_register_script('oc-cbpFWTabs', plugins_url( '/include/admin/js/cbpFWTabs.js' , __FILE__ ), array('jquery'), false, true );
+		   	 wp_enqueue_script('oc-cbpFWTabs');	   	 
+		   	 
+		   	 wp_register_script('oc-custom', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, true );
+		   	 wp_enqueue_script('oc-custom');
+		   	
 		   	 wp_enqueue_media();
 		   	 wp_register_script( 'oc-media-lib-uploader-js', plugins_url( '/include/admin/js/media-lib-uploader.js' , __FILE__ ), array('jquery') );
 		 	wp_enqueue_script( 'oc-media-lib-uploader-js' );
@@ -116,17 +127,7 @@ if (!class_exists("OvulationCalculator")){
 	        //wp_register_script( 'oc_jquery', '//code.jquery.com/jquery-1.12.4.js', false, false );
 	        wp_register_script( 'oc_jquery_ui', '//code.jquery.com/ui/1.12.1/jquery-ui.js', array('jquery'), false, false );
 	        wp_enqueue_script( 'oc_jquery_ui' );
-	        
-	        // languages
-	        //wp_register_script( 'oc-danish', plugins_url( '/include/lang/datepicker-da.js' , __FILE__ ), array('jquery'), false, true );
-	        
-	        //wp_enqueue_script( 'oc-danish' );
-	        //wp_register_script( 'oc-danish-choice', plugins_url( '/js/lang/da.js' , __FILE__ ), array('jquery'), false, true );
-	        
-	        //wp_enqueue_script( 'oc-danish-choice' );
-	        
-	        
-	        
+	        	        
 	        wp_register_script( 'oc-front', plugins_url( '/js/ovulation_calculator_front.js' , __FILE__ ), array('jquery'), false, true );
 		   	wp_enqueue_script( 'oc-front' );
 		   	
@@ -139,7 +140,7 @@ if (!class_exists("OvulationCalculator")){
 			$capability = 'manage_options';
 			$menu_slug  = 'ovulation-calculator-menu';
 			$function   = array($this, 'ovulation_calculator_menu');
-			$icon_url   = 'dashicons-media-code';
+			$icon_url   = plugins_url( '/include/img/ovulationmini.svg' , __FILE__ );
 			$position   = 59;
 			
 			add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position);
@@ -147,7 +148,7 @@ if (!class_exists("OvulationCalculator")){
 		}
 		function ovulation_calculator_menu(){?>
 			<div class="wrap" id="OvulationCalculator">
-				<h1 class="oc_admin_heading"><?php _e('Ovulation Calculator', 'ovulation-calculator'); ?></h1>
+				<h1 class="oc_admin_heading"><img class="ovulation-icon" src="<?php echo plugins_url( '/include/img/ovulation.svg' , __FILE__ )?>" alt="Ovulation"><?php _e('Ovulation Calculator', 'ovulation-calculator'); ?></h1>
 				<?php $this->show_navigation();?>
 			</div>
 		<?php }
@@ -160,12 +161,14 @@ if (!class_exists("OvulationCalculator")){
 				'fourth'  => __( 'Calendar Month Translation', 'ovulation-calculator' ),
 				'fifth'  => __( 'Calendar Days Translation', 'ovulation-calculator' ),
 			);
-		    echo '<div id="tabs">';
-			    $html = '<ul>';
+		    echo '<div class="tabs tabs-style-topline" id="tabs">';
+			    $html = '<nav>';
+			    $html .= '<ul>';
 			    foreach( $tabs as $tab => $name ){
-			        $html .= '<li><a href="#' . $tab . '">' . $name . '</li></a>';
+			        $html .= '<li><a href="#' . $tab . '" class="icon icon-'.$tab.'"><span>' . $name . '</span></li></a>';
 			    }
 			    $html .= '</ul>';
+			    $html .= '</nav>';
 				echo $html;
 		    	$this->show_navigation_contents();
 			echo '</div>';
@@ -177,21 +180,23 @@ if (!class_exists("OvulationCalculator")){
 			   	<?php settings_errors(); ?>
 			   	<?php $options = get_option('ovulationcalculator-group'); ?>
 			   	
-			   	<div id="first"> 
-				   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/mailchimp.php');?>
-				</div>
-				<div id="second">
-					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/translation.php');?>
-				</div>
-				<div id="third">
-					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/emailtranslation.php');?>
-				</div>
-				<div id="fourth">
-					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendarmonth.php');?>
-				</div>
-				<div id="fifth">
-					<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendardays.php');?>
-				</div>
+			   	<div class="content-wrap">
+				   	<section id="first"> 
+					   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/mailchimp.php');?>
+					</section>
+					<section id="second">
+						<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/translation.php');?>
+					</section>
+					<section id="third">
+						<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/emailtranslation.php');?>
+					</section>
+					<section id="fourth">
+						<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendarmonth.php');?>
+					</section>
+					<section id="fifth">
+						<?php include( plugin_dir_path( __FILE__ ) . 'include/admin/calendardays.php');?>
+					</section>
+			   	</div>
 			   	
 			   	<p class="submit"><input type="submit" class="button-primary" value="<?php _e('Save Changes', 'ovulation-calculator') ?>" /></p>
 			</form>

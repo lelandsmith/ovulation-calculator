@@ -1,5 +1,5 @@
 <h1 class="screen-reader-text">Calendar Month Translation</h1>
-<h2>This is where you translate Calendar Month.</h2>
+<h3>This is where you translate Calendar Month.</h3><hr>
 <table class="form-table">
 	<tbody>
 		<tr valign="top">

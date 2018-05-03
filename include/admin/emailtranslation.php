@@ -1,6 +1,4 @@
 <h1 class="screen-reader-text">Email Template Language Translation</h1>
-<h2>This is where you translate for Email template.</h2>
-
 <h3>Language choice of ovulation dates in e-mail template</h3><hr>
 <table class="form-table">
 	<tbody>

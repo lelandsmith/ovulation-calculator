@@ -33,9 +33,20 @@ Yes. You can enter your MailChimp API Key and Unique List ID in mailchimp tab of
 
 Yes. There are options in plugin's settings page. You can use Calendar Translation and Email Template Translation tabs for rewriting the words.
 
+= Does this plugin translate ovulation dates according to language chosen? =
+
+Currently it supports 7 languages. They are Danish, Swedish, Norwegian, Finnish, English, Estonian and Spanish.
 
 == Screenshots ==
 
+
+== Requirements or developer notes ==
+
+Ovulation dates conversation depends on certain php library. This is called IntlDateFormatter (http://php.net/manual/en/class.intldateformatter.php). Your server may not have installed IntlDateFormatter. If not installed then you will receive fatal error. In this case you need to install or ask your hosting company to install IntlDateFormatter php library. If you have access php.ini file then you can edit the code. Look for php_intl.dll. And remove the comment (;) from ;extension=php_intl.dll and it should look like this extension=php_intl.dll.
+
+To install in local machine in mac OSX, you can follow this link:
+http://budiirawan.com/install-php-intl-extension-os-x/
+https://www.simonholywell.com/post/2015/07/international-php-dates-with-intl/
 
 == Changelog ==
 

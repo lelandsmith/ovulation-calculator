@@ -1,4 +1,4 @@
-<h1 class="screen-reader-text">MailChimp</h1>
+<h1 class="screen-reader-text">General</h1>
 <h3>Enter MailChimp's few details so that we can register email to MailChimp's lists.</h3><hr>
 
 <table class="form-table">
@@ -20,5 +20,17 @@
 			<p class="help"><a href="https://docs.betheme.me/article/33-getting-mailchimp-api-key-and-list-id" target="_blank">How to find out Unique ID for List</a> </p>
 		</td>
 		</tr>		
+	</tbody>
+</table>
+<h3>Shortcode</h3><hr>
+<table class="form-table">
+	<tbody>
+		<tr valign="top">
+		<th scope="row"><?php _e('Ovulation Calculator Shortcode', 'ovulationcalculator-group');?></th>
+		<td>
+			<input type="text" name="ovulationcalculator-group[oc-shortcode]" value="[ovulationcalculator]" class="regular-text" readonly/>
+			<p class="description">Copy this shortcode and paste any page/post.</p>
+		</td>
+		</tr>
 	</tbody>
 </table>

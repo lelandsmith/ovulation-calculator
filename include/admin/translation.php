@@ -2,22 +2,6 @@
 <h3>General Calendar Translation</h3><hr>
 <table class="form-table">
 	<tbody>
-		
-		<tr valign="top">
-		<th scope="row"><?php _e('Ovulation Calculator', 'ovulationcalculator-group');?></th>
-		<td>
-			<input type="text" name="ovulationcalculator-group[ovulation-calculator]" value="<?php echo (!empty($options['ovulation-calculator'])) ?  $options['ovulation-calculator'] : 'Ovulation Calculator'?>" class="regular-text"/>
-			<p class="description">Ovulation Calculator</p>
-		</td>
-		</tr>
-		
-		<th scope="row"><?php _e('When are your chances of pregnancy greatest?', 'ovulationcalculator-group');?></th>
-		<td>
-			<input type="text" name="ovulationcalculator-group[pregnancy-greatest]" value="<?php echo (!empty($options['pregnancy-greatest'])) ?  $options['pregnancy-greatest'] : 'When are your chances of pregnancy greatest?'?>" class="regular-text"/>
-			<p class="description">When are your chances of pregnancy greatest?</p>
-		</td>
-		</tr>
-		
 		<tr valign="top">
 		<th scope="row"><?php _e('Calculate ovulation', 'ovulationcalculator-group');?></th>
 		<td>

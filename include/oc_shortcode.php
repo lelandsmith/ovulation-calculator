@@ -2,7 +2,7 @@
 // Get option values from Database. Option Value name is : ovulationcalculator-group
 $options = get_option('ovulationcalculator-group');
 
-
+if (!function_exists('syncMailchimp'))   {
 function syncMailchimp($data) {
 	
 	$options = get_option('ovulationcalculator-group');
@@ -72,13 +72,9 @@ function syncMailchimp($data) {
 				$GLOBALS['message_sent'] = 0;
 				break;
  		}
-	}
-        
-    
-    
+	}    
     //return $httpCode;
-}
-
+}}
 
 if(!empty($_POST['emailsend'])):
 	
@@ -119,24 +115,10 @@ if(!empty($_POST['emailsend'])):
 		include( plugin_dir_path( __FILE__ ) . 'email_template.php');
 endif;?>
 
-
-<div class="oc_heading">
-	<?php if(!empty($options['ovulation-calculator'])):
-		printf(__('<h1 class="oc_title">%s</h1>', 'ovulation-calculator'), $options['ovulation-calculator']);
-	else:
-		printf(__('<h1 class="oc_title">Ovulation Calculator</h1>', 'ovulation-calculator'));
-	endif;
+<?php 
+	if (!function_exists('check_available_date')):
 	
-	if(!empty($options['pregnancy-greatest'])):
-		printf(__('<p class="oc_subtitle">%s</p>', 'ovulation-calculator'), $options['pregnancy-greatest']);
-	else:
-		printf(__('<p class="oc_subtitle">When are your chances of pregnancy greatest?</p>', 'ovulation-calculator'));
-	endif;?>
-</div>
-
-
-
-<?php function check_available_date($firstday, $next_period, $selected_period_date){
+	function check_available_date($firstday, $next_period, $selected_period_date){
 	
 	$keep_all_dates = array();
 	$keep_period_dates = array();
@@ -257,7 +239,7 @@ endif;?>
 			            //convert the date to a string format same as the one used in the array
 			            var string = $.datepicker.formatDate('MM dd, yy', date)
 			            if ($.inArray(string, fertileDays) > -1) {
-			               return [false, 'fertileDay', ''];
+			               return [true, 'fertileDay', ''];
 			           }else if($.inArray(string, periodDays) > -1){	
 			           		return [false, 'periodDay', ''];
 			           }else {
@@ -269,7 +251,7 @@ endif;?>
 			});
 		});
 		</script>	
-<?php } // Function ends here
+<?php } endif;// Function ends here
 
 if(!empty($_POST['calculator_ok'])):
 
@@ -327,40 +309,28 @@ if(!empty($_POST['calculator_ok'])):
 			
 			<?php if($_POST['days'] == 20):?>
 				<style>
-					td.fertileDay-2 span,
-					td.fertileDay-2 a.ui-state-default,
-					td.fertileDay-6 span,
-					td.fertileDay-6 a.ui-state-default{
-						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
-						opacity: 1!important;
-						filter:Alpha(Opacity=100)!important;
-						background-color: #96d2af!important;
+					td.fertileDay-2 span::after,
+					td.fertileDay-2 a.ui-state-default::after,
+					td.fertileDay-6 span::after,
+					td.fertileDay-6 a.ui-state-default::after{
+						content: '\e902';	/*Circle icon*/
 					}
-					td.fertileDay-4 span,
-					td.fertileDay-4,
-					td.fertileDay-4 a.ui-state-default{
-						background-image: url( <?php echo plugins_url('img/tick.svg', __FILE__ )?>)!important;;
-/* 						opacity: 0.89!important; */
-/* 						filter:Alpha(Opacity=89)!important; */
+					td.fertileDay-4 span::after,
+					td.fertileDay-4 a.ui-state-default::after{
+						content: "\e900";	/*Tick icon*/
 					}
 				</style>	
 			<?php elseif($_POST['days'] == 21):?>
 				<style>
-					td.fertileDay-3 span,
-					td.fertileDay-3 a.ui-state-default,
-					td.fertileDay-8 span,
-					td.fertileDay-8 a.ui-state-default{
-						background-image: url( <?php echo plugins_url('img/filled-circle.svg', __FILE__ )?>)!important;
-						opacity: 1!important;
-						filter:Alpha(Opacity=100)!important;
-						background-color: #96d2af!important;
+					td.fertileDay-3 span::after,
+					td.fertileDay-3 a.ui-state-default::after,
+					td.fertileDay-8 span::after,
+					td.fertileDay-8 a.ui-state-default::after{
+						content: '\e902';	/*Circle icon*/
 					}
-					td.fertileDay-4 span,
-					td.fertileDay-4,
-					td.fertileDay-4 a.ui-state-default{
-						background-image: url( <?php echo plugins_url('img/tick.svg', __FILE__ )?>)!important;;
-/* 						opacity: 0.89!important; */
-/* 						filter:Alpha(Opacity=89)!important; */
+					td.fertileDay-4 span::after,
+					td.fertileDay-4 a.ui-state-default::after{
+						content: "\e900";	/*Tick icon*/
 					}
 				</style>
 			<?php endif;?>
@@ -368,18 +338,18 @@ if(!empty($_POST['calculator_ok'])):
 			
 			<div id="datepicker" class="ll-skin-melon"></div>
 			<div class="fertile" style="padding-top: 1rem;">
-				<a href="#"><img src="<?php echo plugins_url('/img/filled-circle.svg' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>
+				<a href="#"><img class="expected-ovulation" src="<?php echo plugins_url('/img/circle2.svg' , __FILE__ )?>" alt="Days of expected pvulation">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-expected-ovulation']);?></a>
 			</div>
 			<div class="calculateagain">
 				<div class="fertile">
-					<a href="#"><img src="<?php echo plugins_url('/img/tick.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-fertile']);?></a>
+					<a href="#"><img class="fertileTick" src="<?php echo plugins_url('/img/checkmark.svg' , __FILE__ )?>" alt="ovulation fertile">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-fertile']);?></a>
 				</div>
 				<div class="calculateagainbtn">
-					<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-change-date']);?>" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'];?><?php echo $_SERVER['REQUEST_URI']?>'">
+					<span class="icon-calendar3"></span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-change-date']);?>" onclick="window.location='http://<?php echo $_SERVER['HTTP_HOST'];?><?php echo $_SERVER['REQUEST_URI']?>'">
 				</div>
 			</div>
 			<div class="fertile">
-				<a href="#"><img src="<?php echo plugins_url('/img/period.png' , __FILE__ )?>" alt="Start of new cycle">&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-start-ovulation']);?></a>
+				<a href="#"><div class="period-indicator"></div>&nbsp;&nbsp;&nbsp;<?php printf(__('%s', 'ovulation-calculator'), $options['oc-start-ovulation']);?></a>
 			</div>
 		</div>
 		<div class="email-area">
@@ -402,7 +372,7 @@ if(!empty($_POST['calculator_ok'])):
 					<label for="subscription"><?php printf(__('%s', 'ovulation-calculator'), $options['oc-terms-message']);?></label>
 				</div>
 				
-				<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
+				<span class="icon-angle-right"></span>
 				<div class="submit-btn"><input type="submit" name="emailsend" id="emailsend" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-email-send']);?>"/></div>
 			</div>
 			</form>
@@ -434,11 +404,7 @@ if(!empty($_POST['calculator_ok'])):
 				var dayFour = "<?php echo $options['oc-thu'] ?>";
 				var dayFive = "<?php echo $options['oc-fri'] ?>";
 				var daySix = "<?php echo $options['oc-sat'] ?>";
-				var daySeven = "<?php echo $options['oc-sun'] ?>";
-
-				
-				
-				
+				var daySeven = "<?php echo $options['oc-sun'] ?>";				
 				
 				$('#calendar').datepicker({	  				  			  	
 				  	monthNames: [ monthOne,monthTwo,monthThree,monthFour,monthFive,monthSix, monthSeven,monthEight,monthNine,monthTen,monthEleven,monthTweleve ],
@@ -471,7 +437,7 @@ if(!empty($_POST['calculator_ok'])):
 			if(!empty($options['first-day-last-period'])):
 				printf(__('<p>%s</p>', 'ovulation-calculator'), $options['first-day-last-period']);
 			endif?>
-			<i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+			<span class="icon-calendar2"></span>
 			<?php if(!empty($options['select-date'])):?>
 			<input type="text" name="something" placeholder="<?php printf(__('%s', 'ovulation-calculator'), $options['select-date']);?>..." id="calendarInput" readonly/>
 			<?php endif?>
@@ -490,7 +456,7 @@ if(!empty($_POST['calculator_ok'])):
 				}
 				?>
 			</select>
-			<i class="fa fa-angle-right fa-4x" aria-hidden="true"></i>
+			<span class="icon-angle-right"></span>
 			<div class="submit-btn">
 				<?php if(!empty($options['oc-submit'])):?>
 					<input type="submit" name="calculator_ok" id="calculatorOk" value="<?php printf(__('%s', 'ovulation-calculator'), $options['oc-submit'])?>">

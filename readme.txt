@@ -42,7 +42,7 @@ Currently it supports 7 languages. They are Danish, Swedish, Norwegian, Finnish,
 
 == Requirements or developer notes ==
 
-Ovulation dates conversation depends on certain php library. This is called IntlDateFormatter (http://php.net/manual/en/class.intldateformatter.php). Your server may not have installed IntlDateFormatter. If not installed then you will receive fatal error. In this case you need to install or ask your hosting company to install IntlDateFormatter php library. If you have access php.ini file then you can edit the code. Look for php_intl.dll. And remove the comment (;) from ;extension=php_intl.dll and it should look like this extension=php_intl.dll.
+Ovulation dates conversation depends on certain php library. This is called IntlDateFormatter (http://php.net/manual/en/class.intldateformatter.php). Your server may not have installed IntlDateFormatter. If not installed then you will receive fatal error. In this case you need to install or ask your hosting company to install IntlDateFormatter php library. If you have access php.ini file then you can edit the code. Look for php_intl.dll. And remove the comment (;) from ;extension=php_intl.dll and it should look like this: extension=php_intl.dll.
 
 To install in local machine in mac OSX, you can follow this link:
 http://budiirawan.com/install-php-intl-extension-os-x/
@@ -50,6 +50,9 @@ https://www.simonholywell.com/post/2015/07/international-php-dates-with-intl/
 
 == Changelog ==
 
+== Credits ==
+https://icomoon.io/
+http://calendarscripts.info/ovulation-predictor.html
 
 == Author URL ==
 https://github.com/zakirsajib

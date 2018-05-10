@@ -11,6 +11,18 @@
 @font-face { font-family: 'EOT Juli Sans-Medium'; src: url('../fonts/JuliSans-Medium.eot'); }
 @font-face { font-family: 'EOT Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.eot'); }
 
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?j9c1fg');
+  src:  url('../fonts/icomoon.eot?j9c1fg#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?j9c1fg') format('truetype'),
+    url('../fonts/icomoon.woff?j9c1fg') format('woff'),
+    url('../fonts/icomoon.svg?j9c1fg#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 .calculator_table{
 	font-size:12px;
 	font-family: "WOFF2 Juli Sans-Regular"; 
@@ -65,20 +77,47 @@
 .calculator_table .email-box{
 	position: relative;
 }
-
-.calculator_table i.fa.fa-calendar{
+.calculator_table .icon-calendar2{
 	position: absolute;
 	right: 35px;
-	margin-top: 10px;
-	color: #c1c1c1;
 	cursor: pointer;
+	font-size: 2.5em;
+}
+.icon-angle-right,
+.icon-calendar3,
+.icon-calendar2{
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1.6;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-.calculator_table i.fa.fa-angle-right{
+.icon-calendar2:before {
+  content: "\e904";
+  color: #c1c1c1;
+}
+
+.icon-calendar3:before {
+  content: "\e904";
+  color: #544f49;
+}
+
+.icon-angle-right:before {
+  content: "\e901";
+}
+
+.calculator_table .icon-angle-right{
 	position: absolute;
 	right: 35px;
-	margin-top: 15px;
 	color: #fff;
+	font-size: 4em;
 }
 
 
@@ -105,7 +144,9 @@
     color: #9E8977;
 }
 
-
+.calculator_table input[type="text"]{
+	cursor: pointer;
+}
 
 .calculator_table input[type="email"],
 .calculator_table select,
@@ -227,27 +268,32 @@
 	box-shadow: none!important;
 	font-size: 16px;
 	color: #544f49;
+	text-decoration: none!important;
 }
 
 .fertile a:visited{
 	color: #544f49;
 }
 
-.fertile a > img{
-	width: 15px;
-	height: 15px;
-	vertical-align: middle;
-	-webkit-box-shadow: none!important;
-	box-shadow: none!important;
-	display: inline;
-	border-radius: 0;
+.fertileTick{
+	fill: #41AD49;
 }
 
-.calculateagain i.fa.fa-calendar{
+
+.period-indicator {
+    width: 15px;
+    height: 15px;
+    background-color: #878cb4;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.calculateagain .icon-calendar3{
 	position: relative;
 	right: 0;
 	margin: 0;
 	line-height: 0;
+	font-size: 2.5em;
 }
 
 .calculateagain input[type=button]{
@@ -320,6 +366,7 @@
 }
 .ui-state-default, .ui-widget-content .ui-state-default{
 	border: 2px solid #fff!important;
+	text-decoration: none!important;
 }
 
 .calculator_table .submit-btn input[disabled][type=submit] {
@@ -343,48 +390,44 @@ td.fertileDay a.ui-state-default,
 td.fertileDay span.ui-state-default {
     background-color: #96d2af;
     color: #fff!important;
-    background-image: url(images/tick.svg);
     background-repeat: no-repeat;
     background-position: right bottom;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    filter:Alpha(Opacity=100);
 }
 
-/*
-.fertileDay-0{
-	opacity: 0.59!important;
-	filter:Alpha(Opacity=59)!important;
+.ui-priority-secondary, 
+.ui-widget-content .ui-priority-secondary{
+	opacity: 1;
+	filter:Alpha(Opacity=100);
 }
-.fertileDay-1{
-	opacity: 0.69!important;
-	filter:Alpha(Opacity=69)!important;
-}
-.fertileDay-2{
-	opacity: 0.79!important;
-	filter:Alpha(Opacity=79)!important;
-}
-.fertileDay-3{
-	opacity: 0.89!important;
-	filter:Alpha(Opacity=89)!important;
-}
-*/
 
-.fertileDay-4,
-.fertileDay-4 a,
-.fertileDay-4 span,
+/*All fertile days*/
+td.fertileDay a.ui-state-default::after{	
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 3;
 
-.fertileDay-10,
-.fertileDay-10 a,
-.fertileDay-10 span{
-	background-image: url(images/filled-circle.svg)!important;
-	opacity: 1!important;
-	filter:Alpha(Opacity=100)!important;
-	background-color: #96d2af!important;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	content: "\e900"; /*Tick icon*/
+    position: absolute;
+    right: 3px;
 }
-/*
-.fertileDay-5{
-	opacity: 0.79!important;
-	filter:Alpha(Opacity=79)!important;
+/*Only ovulating day*/
+td.fertileDay-4 a.ui-state-default::after,
+td.fertileDay-10 a.ui-state-default::after{
+	content: '\e902';	/*Cirlce icon*/
+	color: #1a9f1f!important;
 }
-*/
 
 
 /* Period Style
@@ -394,100 +437,8 @@ td.periodDay span.ui-state-default {
 	background-color: #878cb4;
 	color: #fff!important;
 }
-
-/* Fading Period 
+/* End Period Style
 ------------------------------------*/
-
-/*
-.periodDay-0{
-	opacity: 1;
-	-moz-transition-delay: .1s;
-      -o-transition-delay: .1s;
-      -webkit-transition-delay: .1s;
-      transition-delay: .1s;
-}
-
-.periodDay-1{
-	opacity: 0.8;
-	-moz-transition-delay: .2s;
-      -o-transition-delay: .2s;
-      -webkit-transition-delay: .2s;
-      transition-delay: .2s;
-}
-
-.periodDay-2{
-	opacity: 0.6;
-	-moz-transition-delay: .3s;
-      -o-transition-delay: .3s;
-      -webkit-transition-delay: .3s;
-      transition-delay: .3s;
-}
-
-.periodDay-3{
-	opacity: 0.4;
-	-moz-transition-delay: .4s;
-      -o-transition-delay: .4s;
-      -webkit-transition-delay: .4s;
-      transition-delay: .4s;
-}
-.periodDay-4{
-	opacity: 0.2;
-	-moz-transition-delay: .5s;
-      -o-transition-delay: .5s;
-      -webkit-transition-delay: .5s;
-      transition-delay: .5s;
-}
-*/
-
-/*
-td.periodDay-5 a.ui-state-default{
-	background-color: #f5f5f5;
-	color: #a3a3a3;
-}
-*/
-
-
-/*
-td.periodDay-5 a.ui-state-default,
-td.periodDay-6 a.ui-state-default,
-td.periodDay-7 a.ui-state-default,
-td.periodDay-8 a.ui-state-default{
-	background-color: #f5f5f5;
-	color: #a3a3a3;
-}
-*/
-/*
-.periodDay-5{
-	opacity: 0.1;
-	-moz-transition-delay: .5s;
-      -o-transition-delay: .5s;
-      -webkit-transition-delay: .5s;
-      transition-delay: .5s;
-}
-
-.periodDay-6{
-	opacity: 1;
-	-moz-transition-delay: .1s;
-      -o-transition-delay: .1s;
-      -webkit-transition-delay: .1s;
-      transition-delay: .1s;
-}
-.periodDay-7{
-	opacity: 0.8;
-	-moz-transition-delay: .2s;
-      -o-transition-delay: .2s;
-      -webkit-transition-delay: .2s;
-      transition-delay: .2s;
-}
-.periodDay-8{
-	opacity: 0.6;
-	-moz-transition-delay: .3s;
-      -o-transition-delay: .3s;
-      -webkit-transition-delay: .3s;
-      transition-delay: .3s;
-}
-*/
-
 
 .mailchimpResponse,
 .emailResponse{

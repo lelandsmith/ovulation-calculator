@@ -58,7 +58,7 @@
 
 .tabs nav a span {
 	vertical-align: middle;
-	font-size: 0.65em;
+	font-size: 0.55em;
 }
 
 .tabs nav li.tab-current a {
@@ -88,7 +88,7 @@
 }
 
 .icon-first::before {
-	content: "\f314";
+	content: "\f108";
 }
 .icon-second::before {
 	content: "\f508";
@@ -101,6 +101,9 @@
 }
 .icon-fifth::before {
 	content: "\f145";
+}
+.icon-sixth::before {
+	content: "\f527";
 }
 
 /* Content */

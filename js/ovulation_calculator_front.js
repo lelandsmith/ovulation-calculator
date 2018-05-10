@@ -1,38 +1,11 @@
 $ = jQuery.noConflict();
 $(function ($) {
 	
-	
 	$(document).ready(function() {
-	  	$('#calendarInput, .calculator_table i.fa.fa-calendar').click(function(){
+	  	$('#calendarInput, .calculator_table .icon-calendar2').click(function(){
 	  		$('#calendar').toggle();
-	  		$('.calculator_table i.fa.fa-calendar').css('color', '#a8d1af');
+	  		//$('.calculator_table .icon-calendar2').css('color', '#a8d1af');
 		});
-			  	
-/*
-	  	$('#calendar').datepicker({	  	
-		  	//dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-		  			  	
-		  	monthNames: [ "Januar","Februar","Marts","April","Maj","Juni",
-	"Juli","August","September","Oktober","November","December" ],
-	monthNamesShort: [ "Jan","Feb","Mar","Apr","Maj","Jun",
-	"Jul","Aug","Sep","Okt","Nov","Dec" ],
-			dayNames: [ "Søndag","Mandag","Tirsdag","Onsdag","Torsdag","Fredag","Lørdag" ],
-			dayNamesMin: [ "Søn",mon,"Tir","Ons","Tor","Fre","Lør" ],
-		  	
-		  	firstDay: 1, // Monday
-		  	inline: true,
-		  	showOtherMonths: true,
-	    	dateFormat: "dd/mm/yy",
-            maxDate: 0,
-	    	
-	    	onSelect: function(dateText, inst) {
-				$("input[name='something']").val(dateText);
-				$(this).hide();
-				$('#calculatorOk').prop('disabled',false);
-				$('.calculator_table i.fa.fa-calendar').css('color', '#c1c1c1');
-	    	}
-	    });
-*/
 	    
 	    $('#calculatorOk').prop('disabled',true);
 	    	    	    
@@ -48,35 +21,46 @@ $(function ($) {
 			$('#emailsend').prop("disabled", !this.checked);
 		});
 		
-		
-		// Days fading
-	setTimeout(function() {
-			//$('.periodDay').each(function (i) {
-			//	$(this).addClass('periodDay-' + i);
-			//});	
-			
-			//xx(i);
-			
-					
+		// Fertile Days fading
+		setTimeout(function() {
+								
 			$('.fertileDay').each(function (x) {
 				$(this).addClass('fertileDay-' + x);
 			});
 		}, 500);
 		
+		// Fertile Days fading
+		$('.ui-datepicker-next, .ui-datepicker-prev').live('click', function(){
+			setTimeout(function() {				
+				$('.fertileDay').each(function (x) {
+					$(this).addClass('fertileDay-' + x);
+				});
+			}, 500);
+		});
+		
+		$('.fertile img.fertileTick[src$=".svg"], .fertile img.expected-ovulation[src$=".svg"]').each(function() {
+	        var $img = jQuery(this);
+	        var imgURL = $img.attr('src');
+	        var attributes = $img.prop("attributes");
+	
+	        $.get(imgURL, function(data) {
+	            // Get the SVG tag, ignore the rest
+	            var $svg = jQuery(data).find('svg');
+	
+	            // Remove any invalid XML tags
+	            $svg = $svg.removeAttr('xmlns:a');
+	
+	            // Loop through IMG attributes and apply on SVG
+	            $.each(attributes, function() {
+	                $svg.attr(this.name, this.value);
+	            });
+	
+	            // Replace IMG with SVG
+	            $img.replaceWith($svg);
+	        }, 'xml');
+	    });
 		
 		
-				
-			// Days fading
-			$('.ui-datepicker-next, .ui-datepicker-prev').live('click', function(){
-				setTimeout(function() {				
-					//$('.periodDay').each(function (i) {
-					//	$(this).addClass('periodDay-' + i);
-					//});
-					$('.fertileDay').each(function (x) {
-						$(this).addClass('fertileDay-' + x);
-					});
-				}, 500);
-				//console.log( $( this ).text() );
-			});
+		
 	});
 });

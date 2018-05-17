@@ -8,6 +8,21 @@
 @font-face { font-family: 'WOFF2 Juli Sans-Bold'; src: url('../fonts/JuliSans-Bold.woff2'); }
 
 
+.loader {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1200;
+  overflow: hidden;
+  background: url(../img/Spinner.gif) no-repeat center center;
+}
+
+.content-wrap{
+	min-height: 300px;
+}
+
 #OvulationCalculator h1.oc_admin_heading{
 	font-family: "WOFF2 Juli Sans-Medium";
 	margin-top: 1rem;

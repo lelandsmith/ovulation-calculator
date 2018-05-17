@@ -225,7 +225,26 @@ if (!class_exists("OvulationCalculator")){
 				'oc-email-download'	=>	'Download e-book',
 				'oc-email-download-url'	=>	'',
 				'oc-email-sent-msg'	=>	'E-mail is Sent.',
-				'email-lang'	=> 'danish'
+				'email-lang'	=> 'english',
+				'oc-january'	=>	'January',
+				'oc-feb'	=>	'February',
+				'oc-mar'	=>	'March',
+				'oc-apr'	=>	'April',
+				'oc-may'	=>	'May',
+				'oc-jun'	=>	'June',
+				'oc-jul'	=>	'July',
+				'oc-aug'	=>	'August',
+				'oc-sep'	=>	'September',
+				'oc-oct'	=>	'October',
+				'oc-nov'	=>	'November',
+				'oc-dec'	=>	'December',
+				'oc-mon'	=>	'Mon',
+				'oc-tue'	=>	'Tue',
+				'oc-wed'	=>	'Wed',
+				'oc-thu'	=>	'Thu',
+				'oc-fri'	=>	'Fri',
+				'oc-sat'	=>	'Sat',
+				'oc-sun'	=>	'Sun',
 			);
 			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
 			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
@@ -253,6 +272,9 @@ if (!class_exists("OvulationCalculator")){
 		   	 
 		   	 wp_register_script('oc-custom', plugins_url( '/js/ovulation_calculator.js' , __FILE__ ), array('jquery'), false, true );
 		   	 wp_enqueue_script('oc-custom');
+		   	 
+		   	 wp_register_script('oc-loader', plugins_url( '/include/admin/js/loader.js' , __FILE__ ), array('jquery'), false, true );
+		   	 wp_enqueue_script('oc-loader');
 		   	
 		   	 wp_enqueue_media();
 		   	 wp_register_script( 'oc-media-lib-uploader-js', plugins_url( '/include/admin/js/media-lib-uploader.js' , __FILE__ ), array('jquery') );
@@ -328,6 +350,7 @@ if (!class_exists("OvulationCalculator")){
 			   	<?php $options = get_option('ovulationcalculator-group'); ?>
 			   	
 			   	<div class="content-wrap">
+				   	<div class="loader"></div>
 				   	<section id="first"> 
 					   <?php include( plugin_dir_path( __FILE__ ) . 'include/admin/mailchimp.php');?>
 					</section>

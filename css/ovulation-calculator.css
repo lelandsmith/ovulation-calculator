@@ -251,6 +251,7 @@
 .subscription-option input[type="checkbox"]{
 	transition: all .3s linear;
 	margin-right: 1em;
+	-webkit-appearance: checkbox;
 }
 
 .calculateagain{

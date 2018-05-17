@@ -5,12 +5,12 @@
 		<tr valign="top">
 		<th scope="row"><?php _e('Choose language', 'ovulationcalculator-group');?></th>
 		<td>
-			<input type="radio" name="ovulationcalculator-group[email-lang]" checked value="danish" <?php checked('danish' == $options['email-lang']) ?>/>
+			<input type="radio" name="ovulationcalculator-group[email-lang]" value="danish" <?php checked('danish' == $options['email-lang']) ?>/>
 			<?php _e("Danish", 'ovulation-calculator'); ?>	
 			<input type="radio" name="ovulationcalculator-group[email-lang]" value="swedish" <?php checked('swedish' == $options['email-lang']) ?> /><?php _e("Swedish", 'ovulation-calculator'); ?>
 			<input type="radio" name="ovulationcalculator-group[email-lang]" value="norwegian" <?php checked('norwegian' == $options['email-lang'])?> /><?php _e("Norwegian", 'ovulation-calculator'); ?>
 			<input type="radio" name="ovulationcalculator-group[email-lang]" value="finnish" <?php checked('finnish' == $options['email-lang'])?> /><?php _e("Finnish", 'ovulation-calculator'); ?>
-			<input type="radio" name="ovulationcalculator-group[email-lang]" value="english" <?php checked('english' == $options['email-lang'])?> /><?php _e("English", 'ovulation-calculator'); ?>
+			<input type="radio" name="ovulationcalculator-group[email-lang]" checked value="english" <?php checked('english' == $options['email-lang'])?> /><?php _e("English", 'ovulation-calculator'); ?>
 			<input type="radio" name="ovulationcalculator-group[email-lang]" value="estonian" <?php checked('estonian' == $options['email-lang'])?> /><?php _e("Estonian", 'ovulation-calculator'); ?>
 			<input type="radio" name="ovulationcalculator-group[email-lang]" value="spanish" <?php checked('spanish' == $options['email-lang'])?> /><?php _e("Spanish", 'ovulation-calculator'); ?>
 		</td>

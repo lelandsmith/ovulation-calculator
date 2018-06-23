@@ -279,6 +279,18 @@
 .fertileTick{
 	fill: #41AD49;
 }
+.expected-ovulation {
+    fill: #1A9F1F;
+}
+svg.expected-ovulation,
+svg.fertileTick {
+    position: relative;
+    bottom: auto;
+    width: auto;
+    height: auto;
+    left: auto;
+    display: inherit;
+}
 
 
 .period-indicator {
@@ -414,7 +426,7 @@ td.fertileDay a.ui-state-default::after{
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	line-height: 3;
+	line-height: 2.5;
 
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;

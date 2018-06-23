@@ -245,6 +245,8 @@ if (!class_exists("OvulationCalculator")){
 				'oc-fri'	=>	'Fri',
 				'oc-sat'	=>	'Sat',
 				'oc-sun'	=>	'Sun',
+				'oc-fertile-tick'	=>	'#1A9F1F',
+				'oc-ovulation-dates'	=> '#1A9F1F'
 			);
 			add_option('ovulationcalculator-group', $options, '', 'yes'); // autoload yes. Why?
 			register_setting('ovulationcalculator-group', 'ovulationcalculator-group', $options);
